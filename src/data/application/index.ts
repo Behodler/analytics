@@ -17,6 +17,7 @@ export const SUBGRAPH_HEALTH = gql`
           number
         }
       }
+      subgraphError: allow
     }
   }
 `
@@ -49,7 +50,7 @@ export function useFetchedSubgraphStatus(): {
     client: healthClient,
     fetchPolicy: 'network-only',
     variables: {
-      name: activeNetwork === EthereumNetworkInfo ? 'uniswap/uniswap-v3' : 'ianlapham/uniswap-arbitrum-one',
+      name: activeNetwork === EthereumNetworkInfo ? 'uniswap/uniswap-v3' : 'ianlapham/uniswap-optimism',
     },
   })
 
