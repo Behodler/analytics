@@ -25,7 +25,6 @@ import { notEmpty } from 'utils'
 import TransactionsTable from '../../components/TransactionsTable'
 import { useAllTokenData } from 'state/tokens/hooks'
 import { MonoSpace } from 'components/shared'
-import dayjs from 'dayjs'
 import { useActiveNetworkVersion } from 'state/application/hooks'
 
 const ChartWrapper = styled.div`

@@ -138,12 +138,13 @@ export default function App() {
             </Hide1080>
             <Header />
           </HeaderWrapper>
-          {subgraphStatus.available === false || activeNetwork === OptimismNetworkInfo ? (
+          {subgraphStatus.available === false ? (
             <AppWrapper>
               <BodyWrapper>
                 <DarkGreyCard style={{ maxWidth: '340px' }}>
                   <TYPE.label>
-                    The Graph hosted network which provides data for this site is temporarily experiences issues. Check status{' '}
+                    The Graph hosted network which provides data for this site is temporarily experiences issues. Check
+                    current status{' '}
                     <ExternalLink href="https://thegraph.com/explorer/subgraph/ianlapham/uniswap-optimism">
                       here.
                     </ExternalLink>
