@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 147.9 117.4" style="enable-background:new 0 0 147.9 117.4;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:#0C5D7F;}
+	.st2{fill:url(#SVGID_00000023272868479317919500000013050402651601224872_);}
+	.st3{fill:url(#SVGID_00000179621373263542921460000001835834475840435862_);}
+	.st4{fill:url(#SVGID_00000108987298481978297730000006086019672826697611_);}
+	.st5{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st6{fill:#FFFFFF;}
+	.st7{fill:none;stroke:#0B5C7E;stroke-width:4.3483;stroke-linecap:round;stroke-linejoin:round;animation-name: spinning;transform-origin:10px 20px;animation-duration: 2s; animation-iteration-count: infinite;}
+	@keyframes spinning {
+		from {transform: rotate(0);}
+		to {transform: rotate(180deg);}
+	}
+</style>
+<radialGradient id="SVGID_1_" cx="92.2555" cy="21.0206" r="34.44" fx="93.9571" fy="19.0115" gradientUnits="userSpaceOnUse">
+	<stop  offset="0" style="stop-color:#FFF42A"/>
+	<stop  offset="0.4625" style="stop-color:#FFDB20"/>
+	<stop  offset="1" style="stop-color:#FFBE15"/>
+</radialGradient>
+<circle class="st0" cx="78.3" cy="34.4" r="34.4"/>
+<path class="st1" d="M121.8,43.9c1.3-1.2,4.9-4.1,9.1-5.4c4.1-1.3,7-7.2,7.9-10.1c0.4,3.4-1,11.4-10.4,16.7c0.1-0.9,0.3-2.8,0.8-3.4
+	c-2,1.7-5.6,5.4-5.4,7.2C123.6,47.5,122.7,44.6,121.8,43.9z"/>
+<g>
+	
+		<radialGradient id="SVGID_00000029029416383985497710000003913899372711487144_" cx="83.7793" cy="29.5788" r="29.8392" gradientTransform="matrix(1 0 0 -1 0 120)" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#18ADFA"/>
+		<stop  offset="1" style="stop-color:#0B5C7E"/>
+	</radialGradient>
+	<path style="fill:url(#SVGID_00000029029416383985497710000003913899372711487144_);" d="M124.4,62l2.6-0.8
+		c-2.1,5.6-9,16.9-20.1,17.7l-1.9-2.6c3.8-3.6,8.1-10.9,9.5-14.4c1.8-4.4,5.8-12.8,2.2-19.3s-11.7-17.5-9.8-24.3l1.6,1.1
+		c1.4-3.9,5.4-11.8,10.8-14C112.2,8,101.2,15.7,105,30.4l2.4,19.8l3.6-3.9c-0.2,4.5-9.6,14.4-15.5,17.3c-5.9,2.9-10.7,4-17.1,4
+		c-6.6,0-11.2-0.8-16.4-3.3c-5.4-3.3-14.2-9.5-14.6-17.5c0.8-0.2,1.5-1.8,3.9,1.8c-0.5-6.9-3-21.3-5.9-25.6
+		c-7-10.5-13.7-12.1-17.2-12.6c2.8,2.4,8.7,7.9,10.2,11.2l1.2-1.1c2,5.3,5.3,18.1,3,27.1c-0.3,6.7,1.2,21.4,10.2,27.2
+		c-0.5,1.1-1,2.2-1.4,3.4l-1,0.1c-2.9-3.3-11.4-9.6-22.1-8.7C21.9,70.4,7.4,69.6,0,61.2c0,0,0.1,5.4,5.8,8.1
+		c7.2,3.3,10.4,5.5,16.1,6.4c4.5,0.7,7.2,2,8,2.5l-4-4.2c4.4,0.2,14.9,3.3,21.2,14.5l2.8,4.4l-0.2,1.3v3.7L51,99l1.3,5l2.3,0.5
+		l2.6,4.7l0.5,1.9l2.4-0.8l3.1,3.4l4.1,1l2.4,2.6l4.9-1l4.5,1l4.4-1.6l6.8-1l2.6-2.8l4.1-0.8v-1.9l2.4-0.8v-1.6l1.8-0.8v-1.5h2.1
+		v-3.9l2.9-2.3l-1.5-1.9l2.1-2.9l0.5-3.5c3.8-0.9,10.4-4.1,13.9-11.1c4-7.9,8.2-17.3,9.7-20.9c2.6-5.3,9.3-16,16.1-17.5
+		C142.3,41.5,132.1,46.8,124.4,62z"/>
+	
+		<radialGradient id="SVGID_00000043427313462400673910000015557812168251863457_" cx="119.9764" cy="114.7078" r="0.5199" gradientTransform="matrix(1 0 0 -1 0 120)" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#18ADFA"/>
+		<stop  offset="1" style="stop-color:#0B5C7E"/>
+	</radialGradient>
+	<path style="fill:url(#SVGID_00000043427313462400673910000015557812168251863457_);" d="M119.3,5.5c0.5-0.2,1-0.3,1.4-0.4
+		C120.2,5.2,119.7,5.3,119.3,5.5z"/>
+	
+		<radialGradient id="SVGID_00000118395745870381308560000003556142818687352230_" cx="147.5316" cy="79.643" r="0.2938" gradientTransform="matrix(1 0 0 -1 0 120)" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#18ADFA"/>
+		<stop  offset="1" style="stop-color:#0B5C7E"/>
+	</radialGradient>
+	<path style="fill:url(#SVGID_00000118395745870381308560000003556142818687352230_);" d="M147.1,40.4c0.3-0.1,0.6-0.1,0.8-0.1
+		C147.7,40.3,147.4,40.4,147.1,40.4z"/>
+</g>
+<path class="st5" d="M66.9,82c-1,1.8-1.5,3.8-1.5,6c0,3.8,1.7,7.3,4.5,9.6h16.1c2.7-2.3,4.5-5.7,4.5-9.6c0-2.2-0.6-4.2-1.5-6h-5.3
+	c0.8,1.1,1.3,2.5,1.3,4.1c0,3.8-3.1,7-7,7s-7-3.1-7-7c0-1.5,0.5-2.9,1.3-4.1H66.9z"/>
+<path class="st6" d="M81.4,82h2.1h1.3l1.6,3.1h-1.6l-3.4-0.8V82z"/>
+<circle class="st6" cx="79.6" cy="85.6" r="1.3"/>
+<path class="st1" d="M20.7,52.6C12.8,41.7,3.9,40,0.4,40.5c10.7-4.1,25.1,6.9,31,12.9L27,53.7c2.9,5.1,9.6,4.2,12.6,3.1
+	c-0.3,1.8,2.6,7.6,4.1,10.3C39.3,66.8,28.5,63.5,20.7,52.6z"/>
+<path class="st1" d="M12.3,58.1c7.2-0.4,11.9,5.8,13.4,8.9l-3.2,0.6c0-1.3-1.6-4-2.5-5.2l-0.3,1.9C19.1,62.3,14.5,59.4,12.3,58.1z"
+	/>
+<desc>Created with Sketch.</desc>
+<g id="Page-1">
+	<g id="check-circle-_x28_1_x29_" transform="translate(1.000000, 0.000000)">
+		<path id="Path" class="st7" d="M99.1,32.5v2c0,9.6-6.3,18.1-15.6,20.8s-19.2-0.9-24.4-9s-4.5-18.6,1.7-26s16.6-9.7,25.4-5.7"/>
+	</g>
+</g>
+</svg>

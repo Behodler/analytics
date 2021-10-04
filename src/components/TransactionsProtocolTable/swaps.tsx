@@ -6,7 +6,7 @@ import { AutoColumn } from 'components/Column'
 import { formatDollarAmount, formatAmount } from 'utils/numbers'
 import { shortenAddress, getEtherscanLink } from 'utils'
 import { Label, ClickableText } from 'components/Text'
-import { Transaction, TransactionType } from 'types'
+import { TransactionType, TransactionsProtocol, TransactionSwaps } from 'types'
 import { formatTime } from 'utils/date'
 import { RowFixed } from 'components/Row'
 import { ExternalLink, TYPE } from 'theme'
@@ -80,22 +80,18 @@ const SortText = styled.button<{ active: boolean }>`
 `
 
 const SORT_FIELD = {
-  amountUSD: 'amountUSD',
+  value: 'value',
   timestamp: 'timestamp',
   sender: 'sender',
   amountToken0: 'amountToken0',
   amountToken1: 'amountToken1',
 }
 
-const DataRow = ({ transaction, color }: { transaction: Transaction; color?: string }) => {
-  console.log('transaction', transaction)
-
+const DataRow = ({ transaction, color }: { transaction: TransactionSwaps; color?: string }) => {
   const abs0 = Math.abs(transaction.amountToken0)
   const abs1 = Math.abs(transaction.amountToken1)
-  // const outputTokenSymbol = transaction.amountToken0 < 0 ? transaction.token0Symbol : transaction.token1Symbol
-  // const inputTokenSymbol = transaction.amountToken1 < 0 ? transaction.token0Symbol : transaction.token1Symbol
-  const outputTokenSymbol = transaction.amountToken0
-  const inputTokenSymbol = transaction.amountToken1
+  const inputTokenSymbol = transaction.token0Symbol
+  const outputTokenSymbol = transaction.token1Symbol
   const [activeNetwork] = useActiveNetworkVersion()
   const theme = useTheme()
 
@@ -110,14 +106,14 @@ const DataRow = ({ transaction, color }: { transaction: Transaction; color?: str
             : `Remove ${transaction.token0Symbol}`}
         </Label>
       </ExternalLink>
-      {/* <Label end={1} fontWeight={400}>
-        {formatDollarAmount(transaction.amountUSD)}
-      </Label> */}
       <Label end={1} fontWeight={400}>
         <HoverInlineText text={`${formatAmount(abs0)}  ${transaction.token0Symbol}`} maxCharacters={16} />
       </Label>
       <Label end={1} fontWeight={400}>
         <HoverInlineText text={`${formatAmount(abs1)}  ${transaction.token1Symbol}`} maxCharacters={16} />
+      </Label>
+      <Label end={1} fontWeight={400}>
+        {formatDollarAmount(transaction.value)}
       </Label>
       <Label end={1} fontWeight={400}>
         <ExternalLink
@@ -134,17 +130,18 @@ const DataRow = ({ transaction, color }: { transaction: Transaction; color?: str
   )
 }
 
-export default function TransactionTable({
+export default function SwapsTransactionsTable({
   transactions,
   maxItems = 10,
   color,
 }: {
-  transactions: Transaction[]
+  transactions: TransactionsProtocol
   maxItems?: number
   color?: string
 }) {
   // theming
   const theme = useTheme()
+  const swaps = transactions.swaps
 
   // for sorting
   const [sortField, setSortField] = useState(SORT_FIELD.timestamp)
@@ -156,22 +153,22 @@ export default function TransactionTable({
 
   useEffect(() => {
     let extraPages = 1
-    if (transactions.length % maxItems === 0) {
+    if (swaps.length % maxItems === 0) {
       extraPages = 0
     }
-    setMaxPage(Math.floor(transactions.length / maxItems) + extraPages)
-  }, [maxItems, transactions])
+    setMaxPage(Math.floor(swaps.length / maxItems) + extraPages)
+  }, [maxItems, swaps])
 
   // filter on txn type
   const [txFilter, setTxFilter] = useState<TransactionType | undefined>(undefined)
 
   const sortedTransactions = useMemo(() => {
-    return transactions
-      ? transactions
+    return swaps
+      ? swaps
           .slice()
           .sort((a, b) => {
             if (a && b) {
-              return a[sortField as keyof Transaction] > b[sortField as keyof Transaction]
+              return a[sortField as keyof TransactionSwaps] > b[sortField as keyof TransactionSwaps]
                 ? (sortDirection ? -1 : 1) * 1
                 : (sortDirection ? -1 : 1) * -1
             } else {
@@ -183,7 +180,7 @@ export default function TransactionTable({
           })
           .slice(maxItems * (page - 1), page * maxItems)
       : []
-  }, [transactions, maxItems, page, sortField, sortDirection, txFilter])
+  }, [swaps, maxItems, page, sortField, sortDirection, txFilter])
 
   const handleSort = useCallback(
     (newField: string) => {
@@ -200,7 +197,7 @@ export default function TransactionTable({
     [sortDirection, sortField]
   )
 
-  if (!transactions) {
+  if (!swaps) {
     return <Loader />
   }
 
@@ -208,48 +205,15 @@ export default function TransactionTable({
     <Wrapper>
       <AutoColumn gap="16px">
         <ResponsiveGrid>
-          <RowFixed>
-            <SortText
-              onClick={() => {
-                setTxFilter(undefined)
-              }}
-              active={txFilter === undefined}
-            >
-              All
-            </SortText>
-            <SortText
-              onClick={() => {
-                setTxFilter(TransactionType.SWAP)
-              }}
-              active={txFilter === TransactionType.SWAP}
-            >
-              Swaps
-            </SortText>
-            <SortText
-              onClick={() => {
-                setTxFilter(TransactionType.MINT)
-              }}
-              active={txFilter === TransactionType.MINT}
-            >
-              Adds
-            </SortText>
-            <SortText
-              onClick={() => {
-                setTxFilter(TransactionType.BURN)
-              }}
-              active={txFilter === TransactionType.BURN}
-            >
-              Removes
-            </SortText>
-          </RowFixed>
-          <ClickableText color={theme.text2} onClick={() => handleSort(SORT_FIELD.amountUSD)} end={1}>
-            Total Value {arrow(SORT_FIELD.amountUSD)}
-          </ClickableText>
+          <RowFixed>Action</RowFixed>
           <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.amountToken0)}>
-            Token Amount {arrow(SORT_FIELD.amountToken0)}
+            Swap {arrow(SORT_FIELD.amountToken0)}
           </ClickableText>
           <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.amountToken1)}>
-            Token Amount {arrow(SORT_FIELD.amountToken1)}
+            For {arrow(SORT_FIELD.amountToken1)}
+          </ClickableText>
+          <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.value)}>
+            Value {arrow(SORT_FIELD.value)}
           </ClickableText>
           <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.sender)}>
             Account {arrow(SORT_FIELD.sender)}

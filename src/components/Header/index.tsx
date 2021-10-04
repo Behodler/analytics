@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { darken } from 'polished'
 import styled from 'styled-components'
-import LogoDark from '../../assets/svg/logo_white.svg'
+// import LogoDark from '../../assets/svg/logo.svg'
+import BehodlerLogo from '../../assets/svg/behodler-logo.svg'
+import BehodlerLogoTxt from '../../assets/svg/behodler-logo-txt.svg'
 import Menu from '../Menu'
 import Row, { RowFixed, RowBetween } from '../Row'
 import SearchSmall from 'components/Search'
@@ -10,6 +12,24 @@ import NetworkDropdown from 'components/Menu/NetworkDropdown'
 import { useActiveNetworkVersion } from 'state/application/hooks'
 import { networkPrefix } from 'utils/networkPrefix'
 import { AutoColumn } from 'components/Column'
+
+const LogoIcon = styled.div`
+  width: 180px;
+
+  @media (max-width: 769px) {
+    display: none;
+  }
+`
+
+const LogoText = styled.div`
+  display: none;
+  width: 120px;
+  margin-top: 20px;
+
+  @media (max-width: 769px) {
+    display: block;
+  }
+`
 
 const HeaderFrame = styled.div`
   display: grid;
@@ -21,18 +41,26 @@ const HeaderFrame = styled.div`
   width: 100%;
   top: 0;
   position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   z-index: 2;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-
-  background-color: ${({ theme }) => theme.bg0};
-
+  transition: all 300ms ease-in-out;
   @media (max-width: 1080px) {
     grid-template-columns: 1fr;
     padding: 0.5rem 1rem;
     width: calc(100%);
     position: relative;
+  }
+
+  &.sticky {
+    background-color: ${({ theme }) => theme.bg1};
+
+    ${LogoIcon} {
+      width: 120px;
+    }
+    ${LogoText} {
+      width: 94px;
+      margin-top: 5px;
+    }
   }
 
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
@@ -79,13 +107,6 @@ const Title = styled(NavLink)`
   `};
 `
 
-const UniIcon = styled.div`
-  transition: transform 0.3s ease;
-  :hover {
-    transform: rotate(-5deg);
-  }
-`
-
 const activeClassName = 'ACTIVE'
 
 const StyledNavLink = styled(NavLink).attrs({
@@ -97,7 +118,7 @@ const StyledNavLink = styled(NavLink).attrs({
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.text3};
+  color: ${({ theme }) => theme.text1};
   font-size: 1rem;
   width: fit-content;
   margin: 0 6px;
@@ -106,13 +127,12 @@ const StyledNavLink = styled(NavLink).attrs({
 
   &.${activeClassName} {
     border-radius: 12px;
-    background-color: ${({ theme }) => theme.bg2};
-    color: ${({ theme }) => theme.text1};
+    color: ${({ theme }) => theme.primary1};
   }
 
   :hover,
   :focus {
-    color: ${({ theme }) => darken(0.1, theme.text1)};
+    color: ${({ theme }) => theme.primary1};
   }
 `
 
@@ -147,8 +167,8 @@ export const StyledMenuButton = styled.button`
 `
 
 const SmallContentGrouping = styled.div`
-  width: 100%;
   display: none;
+  width: 100%;
   @media (max-width: 1080px) {
     display: initial;
   }
@@ -156,15 +176,31 @@ const SmallContentGrouping = styled.div`
 
 export default function Header() {
   const [activeNewtork] = useActiveNetworkVersion()
+  const [scroll, setScroll] = useState(false)
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      setScroll(window.scrollY > 50)
+    })
+  }, [])
 
   return (
-    <HeaderFrame>
+    <HeaderFrame className={scroll ? 'sticky' : ''}>
       <HeaderRow>
         <Title to={networkPrefix(activeNewtork)}>
-          <UniIcon>
-            <img width={'24px'} src={LogoDark} alt="logo" />
-          </UniIcon>
+          <LogoIcon>
+            <img src={BehodlerLogo} alt="Behodler Logo" />
+          </LogoIcon>
+          <LogoText>
+            <img src={BehodlerLogoTxt} alt="Behodler Logo" />
+          </LogoText>
         </Title>
+        <SmallContentGrouping>
+          <Menu />
+        </SmallContentGrouping>
+      </HeaderRow>
+      <HeaderControls>
+        {/* <NetworkDropdown /> */}
+        {/* <SearchSmall /> */}
         <HeaderLinks>
           <StyledNavLink
             id={`pool-nav-link`}
@@ -173,28 +209,15 @@ export default function Header() {
           >
             Overview
           </StyledNavLink>
-          <StyledNavLink id={`stake-nav-link`} to={networkPrefix(activeNewtork) + 'pools'}>
-            Pools
-          </StyledNavLink>
+          {/* <StyledNavLink id={`stake-nav-link`} to={networkPrefix(activeNewtork) + 'pools'}>
+            Limbo
+          </StyledNavLink> */}
           <StyledNavLink id={`stake-nav-link`} to={networkPrefix(activeNewtork) + 'tokens'}>
             Tokens
           </StyledNavLink>
         </HeaderLinks>
-      </HeaderRow>
-      <HeaderControls>
-        <NetworkDropdown />
-        <SearchSmall />
         <Menu />
       </HeaderControls>
-      <SmallContentGrouping>
-        <AutoColumn gap="sm">
-          <RowBetween>
-            <NetworkDropdown />
-            <Menu />
-          </RowBetween>
-          <SearchSmall />
-        </AutoColumn>
-      </SmallContentGrouping>
     </HeaderFrame>
   )
 }

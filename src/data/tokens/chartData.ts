@@ -21,7 +21,7 @@ const TOKEN_CHART = gql`
       subgraphError: allow
     ) {
       date
-      volumeUSD
+      dailyVolumeUSD
       totalValueLockedUSD
     }
   }
@@ -30,7 +30,7 @@ const TOKEN_CHART = gql`
 interface ChartResults {
   tokenDayDatas: {
     date: number
-    volumeUSD: string
+    dailyVolumeUSD: string
     totalValueLockedUSD: string
   }[]
 }
@@ -38,7 +38,7 @@ interface ChartResults {
 export async function fetchTokenChartData(address: string, client: ApolloClient<NormalizedCacheObject>) {
   let data: {
     date: number
-    volumeUSD: string
+    dailyVolumeUSD: string
     totalValueLockedUSD: string
   }[] = []
   const startTimestamp = 1619170975
@@ -78,7 +78,7 @@ export async function fetchTokenChartData(address: string, client: ApolloClient<
       const roundedDate = parseInt((dayData.date / ONE_DAY_UNIX).toFixed(0))
       accum[roundedDate] = {
         date: dayData.date,
-        volumeUSD: parseFloat(dayData.volumeUSD),
+        dailyVolumeUSD: parseFloat(dayData.dailyVolumeUSD),
         totalValueLockedUSD: parseFloat(dayData.totalValueLockedUSD),
       }
       return accum
@@ -95,7 +95,7 @@ export async function fetchTokenChartData(address: string, client: ApolloClient<
       if (!Object.keys(formattedExisting).includes(currentDayIndex.toString())) {
         formattedExisting[currentDayIndex] = {
           date: nextDay,
-          volumeUSD: 0,
+          dailyVolumeUSD: 0,
           totalValueLockedUSD: latestTvl,
         }
       } else {

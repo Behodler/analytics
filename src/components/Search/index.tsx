@@ -217,11 +217,18 @@ const Search = ({ ...rest }: React.HTMLAttributes<HTMLDivElement>) => {
   // filter on view
   const [showWatchlist, setShowWatchlist] = useState(false)
   const tokensForList = useMemo(
-    () => (showWatchlist ? watchListTokenData ?? [] : tokens.sort((t0, t1) => (t0.volumeUSD > t1.volumeUSD ? -1 : 1))),
+    () =>
+      showWatchlist
+        ? watchListTokenData ?? []
+        : tokens.sort((t0, t1) => (t0.dailyVolumeUSD > t1.dailyVolumeUSD ? -1 : 1)),
     [showWatchlist, tokens, watchListTokenData]
   )
+
   const poolForList = useMemo(
-    () => (showWatchlist ? watchListPoolData ?? [] : pools.sort((p0, p1) => (p0.volumeUSD > p1.volumeUSD ? -1 : 1))),
+    () =>
+      showWatchlist
+        ? watchListPoolData ?? []
+        : pools.sort((p0, p1) => (p0.dailyVolumeUSD > p1.dailyVolumeUSD ? -1 : 1)),
     [pools, showWatchlist, watchListPoolData]
   )
 
@@ -300,10 +307,10 @@ const Search = ({ ...rest }: React.HTMLAttributes<HTMLDivElement>) => {
                         />
                       </RowFixed>
                       <HideSmall>
-                        <TYPE.label textAlign="end">{formatDollarAmount(t.volumeUSD)}</TYPE.label>
+                        <TYPE.label textAlign="end">{formatDollarAmount(t.dailyVolumeUSD)}</TYPE.label>
                       </HideSmall>
                       <HideSmall>
-                        <TYPE.label textAlign="end">{formatDollarAmount(t.tvlUSD)}</TYPE.label>
+                        <TYPE.label textAlign="end">{formatDollarAmount(t.totalLiquidityUSD)}</TYPE.label>
                       </HideSmall>
                       <HideSmall>
                         <TYPE.label textAlign="end">{formatDollarAmount(t.priceUSD)}</TYPE.label>
@@ -368,10 +375,10 @@ const Search = ({ ...rest }: React.HTMLAttributes<HTMLDivElement>) => {
                         />
                       </RowFixed>
                       <HideSmall>
-                        <TYPE.label textAlign="end">{formatDollarAmount(p.volumeUSD)}</TYPE.label>
+                        <TYPE.label textAlign="end">{formatDollarAmount(p.dailyVolumeUSD)}</TYPE.label>
                       </HideSmall>
                       <HideSmall>
-                        <TYPE.label textAlign="end">{formatDollarAmount(p.tvlUSD)}</TYPE.label>
+                        <TYPE.label textAlign="end">{formatDollarAmount(p.totalLiquidityUSD)}</TYPE.label>
                       </HideSmall>
                       <HideSmall>
                         <TYPE.label textAlign="end">{formatDollarAmount(p.token0Price)}</TYPE.label>

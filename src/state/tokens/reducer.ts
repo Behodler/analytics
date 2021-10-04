@@ -12,7 +12,7 @@ import { PriceChartEntry, Transaction } from 'types'
 import { SupportedNetwork, SUPPORTED_NETWORK_VERSIONS } from 'constants/networks'
 
 export type TokenData = {
-  // token is in some pool on uniswap
+  // token is in some pool on behodler
   exists: boolean
 
   // basic token info
@@ -21,9 +21,9 @@ export type TokenData = {
   address: string
 
   // volume
-  volumeUSD: number
-  volumeUSDChange: number
-  volumeUSDWeek: number
+  dailyVolumeUSD: number
+  dailyVolumeUSDChange: number
+  dailyVolumeUSDWeek: number
   txCount: number
 
   //fees
@@ -31,8 +31,8 @@ export type TokenData = {
 
   // tvl
   tvlToken: number
-  tvlUSD: number
-  tvlUSDChange: number
+  totalLiquidityUSD: number
+  totalLiquidityUSDChange: number
 
   priceUSD: number
   priceUSDChange: number
@@ -41,7 +41,7 @@ export type TokenData = {
 
 export interface TokenChartEntry {
   date: number
-  volumeUSD: number
+  dailyVolumeUSD: number
   totalValueLockedUSD: number
 }
 

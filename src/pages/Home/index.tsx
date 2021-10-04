@@ -22,17 +22,156 @@ import { unixToDate } from 'utils/date'
 import BarChart from 'components/BarChart/alt'
 import { useAllPoolData } from 'state/pools/hooks'
 import { notEmpty } from 'utils'
-import TransactionsTable from '../../components/TransactionsTable'
+import SwapsTransactionsTable from '../../components/TransactionsProtocolTable/swaps'
+import LiquiditiesTransactionsTable from '../../components/TransactionsProtocolTable/liquidities'
 import { useAllTokenData } from 'state/tokens/hooks'
 import { MonoSpace } from 'components/shared'
 import { useActiveNetworkVersion } from 'state/application/hooks'
+import dayjs from 'dayjs'
 
 const ChartWrapper = styled.div`
-  width: 49%;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  background: ${({ theme }) => theme.bg0};
+  margin-bottom: 30px;
+  border-radius: 10px;
+`
+const ChartKeyWrapper = styled.div`
+  margin: 0;
+  padding: 20px 15px;
+  background: ${({ theme }) => theme.bg3};
+  border-radius: 6px;
+  text-align: center;
+`
+const ChartKeyTitle = styled.div`
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1;
+  color: #ffffff;
+  padding: 2px 5px;
+  margin-left: -5px;
+  @media (max-width: 1080px) {
+    font-size: 12px;
+  }
+`
+const ChartKeyValue = styled.div`
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  @media (max-width: 1080px) {
+    font-size: 24px;
+  }
+`
+const ChartKeyDate = styled.div`
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1;
+  color: #ffffff;
+  @media (max-width: 1080px) {
+    display: none;
+  }
+`
+const ChartKeyButton = styled.div`
+  a {
+    color: ${({ theme }) => theme.primary1};
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1;
+    padding: 10px 25px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 6px;
+    margin: 10px auto 0;
+    border-radius: 4px;
+    background: transparent;
+    transition: all 300ms ease-in-out;
+    border: 1px solid ${({ theme }) => theme.primary1};
+    box-sizing: border-box;
+    :hover {
+      background: ${({ theme }) => theme.primary1};
+      color: ${({ theme }) => theme.white};
+    }
+    @media (max-width: 1080px) {
+      padding: 8px 12px;
+    }
+  }
+`
 
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 100%;
-  `};
+const ChartType = styled.div`
+  text-align: center;
+  position: relative;
+  margin: 0 auto -16px;
+`
+const ChartTypeToggle = styled.div`
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: center;
+  font-weight: 600;
+  padding: 8px 20px;
+  position: relative;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  :hover:not(.active) {
+    color: ${({ theme }) => theme.primary1};
+  }
+  &.active {
+    background: ${({ theme }) => theme.primary4};
+  }
+`
+
+const ChartSize = styled.div`
+  text-align: center;
+  position: relative;
+  margin: -5px 10px 0 0;
+`
+const ChartSizeOption = styled.div`
+  cursor: pointer;
+  font-size: 12px;
+  display: inline-block;
+  font-weight: 500;
+  padding: 0px 10px;
+  position: relative;
+  color: ${({ theme }) => theme.text2};
+
+  &.active {
+    color: ${({ theme }) => theme.primary1};
+  }
+  :hover:not(.active) {
+    color: ${({ theme }) => theme.primary1};
+  }
+`
+const TransactionsListType = styled.div`
+  text-align: center;
+  position: relative;
+  margin: 0 auto -16px;
+`
+
+const TransactionsTypeToggle = styled.div`
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: center;
+  font-weight: 600;
+  padding: 8px 20px;
+  position: relative;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  :hover:not(.active) {
+    color: ${({ theme }) => theme.primary1};
+  }
+  &.active {
+    background: ${({ theme }) => theme.primary4};
+  }
 `
 
 export default function Home() {
@@ -54,11 +193,9 @@ export default function Home() {
   const [liquidityHover, setLiquidityHover] = useState<number | undefined>()
   const [leftLabel, setLeftLabel] = useState<string | undefined>()
   const [rightLabel, setRightLabel] = useState<string | undefined>()
-
-  useEffect(() => {
-    setLiquidityHover(undefined)
-    setVolumeHover(undefined)
-  }, [activeNetwork])
+  const [isVolumeChart, setIsVolumeChart] = useState<boolean>(false)
+  const [liquidityChartPeriod, setLiquidityChartPeriod] = useState<number>(0)
+  const [volumeChartPeriod, setVolumeChartPeriod] = useState<number>(0)
 
   // get all the pool datas that exist
   const allPoolData = useAllPoolData()
@@ -68,43 +205,47 @@ export default function Home() {
       .filter(notEmpty)
   }, [allPoolData])
 
+  // set visible chart
+  const setChartType = () => setIsVolumeChart(!isVolumeChart)
+
+  // set visible table
+  const [isSwapsChart, setIsSwapTable] = useState<boolean>(false)
+  const setTableType = () => setIsSwapTable(!isSwapsChart)
+
   // if hover value undefined, reset to current day value
   useEffect(() => {
     if (!volumeHover && protocolData) {
-      setVolumeHover(protocolData.volumeUSD)
+      setVolumeHover(protocolData.totalVolumeUSD)
     }
   }, [protocolData, volumeHover])
-  useEffect(() => {
-    if (!liquidityHover && protocolData) {
-      setLiquidityHover(protocolData.tvlUSD)
-    }
-  }, [liquidityHover, protocolData])
 
-  const formattedTvlData = useMemo(() => {
+  const formattedLiquidityData = useMemo(() => {
     if (chartData) {
-      return chartData.map((day) => {
+      setLiquidityHover(chartData[chartData.length - 1].totalLiquidityUSD)
+      return chartData.slice(liquidityChartPeriod).map((day) => {
         return {
           time: unixToDate(day.date),
-          value: day.tvlUSD,
+          value: day.totalLiquidityUSD,
         }
       })
     } else {
       return []
     }
-  }, [chartData])
+  }, [chartData, liquidityChartPeriod])
 
   const formattedVolumeData = useMemo(() => {
     if (chartData) {
-      return chartData.map((day) => {
+      setVolumeHover(chartData[chartData.length - 1].dailyVolumeUSD)
+      return chartData.slice(volumeChartPeriod).map((day) => {
         return {
           time: unixToDate(day.date),
-          value: day.volumeUSD,
+          value: day.dailyVolumeUSD,
         }
       })
     } else {
       return []
     }
-  }, [chartData])
+  }, [chartData, volumeChartPeriod])
 
   const allTokens = useAllTokenData()
 
@@ -116,84 +257,127 @@ export default function Home() {
 
   return (
     <PageWrapper>
-      <ThemedBackgroundGlobal backgroundColor={activeNetwork.bgColor} />
+      <ThemedBackgroundGlobal />
       <AutoColumn gap="16px">
-        <TYPE.main>Uniswap Overview</TYPE.main>
+        <ChartType>
+          <ChartTypeToggle className={isVolumeChart ? '' : 'active'} onClick={setChartType}>
+            Liquidity
+          </ChartTypeToggle>
+          <ChartTypeToggle className={isVolumeChart ? 'active' : ''} onClick={setChartType}>
+            Volume
+          </ChartTypeToggle>
+        </ChartType>
         <ResponsiveRow>
-          <ChartWrapper>
-            <LineChart
-              data={formattedTvlData}
-              height={220}
-              minHeight={332}
-              color={activeNetwork.primaryColor}
-              value={liquidityHover}
-              label={leftLabel}
-              setValue={setLiquidityHover}
-              setLabel={setLeftLabel}
-              topLeft={
-                <AutoColumn gap="4px">
-                  <TYPE.mediumHeader fontSize="16px">TVL</TYPE.mediumHeader>
-                  <TYPE.largeHeader fontSize="32px">
-                    <MonoSpace>{formatDollarAmount(liquidityHover, 2, true)} </MonoSpace>
-                  </TYPE.largeHeader>
-                  <TYPE.main fontSize="12px" height="14px">
-                    {leftLabel ? <MonoSpace>{leftLabel} (UTC)</MonoSpace> : null}
-                  </TYPE.main>
-                </AutoColumn>
-              }
-            />
-          </ChartWrapper>
-          <ChartWrapper>
-            <BarChart
-              height={220}
-              minHeight={332}
-              data={formattedVolumeData}
-              color={theme.blue1}
-              setValue={setVolumeHover}
-              setLabel={setRightLabel}
-              value={volumeHover}
-              label={rightLabel}
-              topLeft={
-                <AutoColumn gap="4px">
-                  <TYPE.mediumHeader fontSize="16px">Volume 24H</TYPE.mediumHeader>
-                  <TYPE.largeHeader fontSize="32px">
-                    <MonoSpace> {formatDollarAmount(volumeHover, 2)}</MonoSpace>
-                  </TYPE.largeHeader>
-                  <TYPE.main fontSize="12px" height="14px">
-                    {rightLabel ? <MonoSpace>{rightLabel} (UTC)</MonoSpace> : null}
-                  </TYPE.main>
-                </AutoColumn>
-              }
-            />
-          </ChartWrapper>
+          {!isVolumeChart && (
+            <ChartWrapper>
+              <LineChart
+                data={formattedLiquidityData}
+                height={220}
+                minHeight={332}
+                color={activeNetwork.primaryColor}
+                value={liquidityHover}
+                label={leftLabel}
+                setValue={setLiquidityHover}
+                setLabel={setLeftLabel}
+                topLeft={
+                  <ChartKeyWrapper>
+                    <ChartKeyTitle>Behodler Liquidity</ChartKeyTitle>
+                    <ChartKeyValue>{formatDollarAmount(liquidityHover, 2, true)}</ChartKeyValue>
+                    <ChartKeyDate>
+                      {leftLabel ? <div>{leftLabel}</div> : <div>{dayjs().format('MMM D, YYYY')}</div>}
+                    </ChartKeyDate>
+                    <ChartKeyButton>
+                      <a href="#">Add liquidity</a>
+                    </ChartKeyButton>
+                  </ChartKeyWrapper>
+                }
+                topRight={
+                  <ChartSize>
+                    <ChartSizeOption
+                      onClick={() => setLiquidityChartPeriod(-7)}
+                      className={liquidityChartPeriod === -7 ? 'active' : ''}
+                    >
+                      Week
+                    </ChartSizeOption>
+                    <ChartSizeOption
+                      onClick={() => setLiquidityChartPeriod(-30)}
+                      className={liquidityChartPeriod === -30 ? 'active' : ''}
+                    >
+                      Month
+                    </ChartSizeOption>
+                    <ChartSizeOption
+                      onClick={() => setLiquidityChartPeriod(-90)}
+                      className={liquidityChartPeriod === -90 ? 'active' : ''}
+                    >
+                      3 Months
+                    </ChartSizeOption>
+                    <ChartSizeOption
+                      onClick={() => setLiquidityChartPeriod(0)}
+                      className={liquidityChartPeriod === 0 ? 'active' : ''}
+                    >
+                      MAX
+                    </ChartSizeOption>
+                  </ChartSize>
+                }
+              />
+            </ChartWrapper>
+          )}
+          {isVolumeChart && (
+            <ChartWrapper>
+              <BarChart
+                height={220}
+                minHeight={332}
+                data={formattedVolumeData}
+                color={theme.primary1}
+                setValue={setVolumeHover}
+                setLabel={setRightLabel}
+                value={volumeHover}
+                label={rightLabel}
+                topLeft={
+                  <ChartKeyWrapper>
+                    <ChartKeyTitle>Behodler Volume</ChartKeyTitle>
+                    <ChartKeyValue>{formatDollarAmount(volumeHover, 2, true)}</ChartKeyValue>
+                    <ChartKeyDate>
+                      {leftLabel ? <div>{leftLabel}</div> : <div>{dayjs().format('MMM D, YYYY')}</div>}
+                    </ChartKeyDate>
+                    <ChartKeyButton>
+                      <a href="#">Swap tokens</a>
+                    </ChartKeyButton>
+                  </ChartKeyWrapper>
+                }
+                topRight={
+                  <ChartSize>
+                    <ChartSizeOption
+                      onClick={() => setVolumeChartPeriod(-7)}
+                      className={volumeChartPeriod === -7 ? 'active' : ''}
+                    >
+                      Week
+                    </ChartSizeOption>
+                    <ChartSizeOption
+                      onClick={() => setVolumeChartPeriod(-30)}
+                      className={volumeChartPeriod === -30 ? 'active' : ''}
+                    >
+                      Month
+                    </ChartSizeOption>
+                    <ChartSizeOption
+                      onClick={() => setVolumeChartPeriod(-90)}
+                      className={volumeChartPeriod === -90 ? 'active' : ''}
+                    >
+                      3 Months
+                    </ChartSizeOption>
+                    <ChartSizeOption
+                      onClick={() => setVolumeChartPeriod(0)}
+                      className={volumeChartPeriod === 0 ? 'active' : ''}
+                    >
+                      MAX
+                    </ChartSizeOption>
+                  </ChartSize>
+                }
+              />
+            </ChartWrapper>
+          )}
         </ResponsiveRow>
-        <HideSmall>
-          <DarkGreyCard>
-            <RowBetween>
-              <RowFixed>
-                <RowFixed mr="20px">
-                  <TYPE.main mr="4px">Volume 24H: </TYPE.main>
-                  <TYPE.label mr="4px">{formatDollarAmount(protocolData?.volumeUSD)}</TYPE.label>
-                  <Percent value={protocolData?.volumeUSDChange} wrap={true} />
-                </RowFixed>
-                <RowFixed mr="20px">
-                  <TYPE.main mr="4px">Fees 24H: </TYPE.main>
-                  <TYPE.label mr="4px">{formatDollarAmount(protocolData?.feesUSD)}</TYPE.label>
-                  <Percent value={protocolData?.feeChange} wrap={true} />
-                </RowFixed>
-                <HideMedium>
-                  <RowFixed mr="20px">
-                    <TYPE.main mr="4px">TVL: </TYPE.main>
-                    <TYPE.label mr="4px">{formatDollarAmount(protocolData?.tvlUSD)}</TYPE.label>
-                    <TYPE.main></TYPE.main>
-                    <Percent value={protocolData?.tvlUSDChange} wrap={true} />
-                  </RowFixed>
-                </HideMedium>
-              </RowFixed>
-            </RowBetween>
-          </DarkGreyCard>
-        </HideSmall>
-        <RowBetween>
+        {/* <RowBetween>
           <TYPE.main>Top Tokens</TYPE.main>
           <StyledInternalLink to="tokens">Explore</StyledInternalLink>
         </RowBetween>
@@ -202,11 +386,26 @@ export default function Home() {
           <TYPE.main>Top Pools</TYPE.main>
           <StyledInternalLink to="pools">Explore</StyledInternalLink>
         </RowBetween>
-        <PoolTable poolDatas={poolDatas} />
-        <RowBetween>
-          <TYPE.main>Transactions</TYPE.main>
-        </RowBetween>
-        {transactions ? <TransactionsTable transactions={transactions} color={activeNetwork.primaryColor} /> : null}
+        <PoolTable poolDatas={poolDatas} /> */}
+        {transactions ? (
+          <RowBetween>
+            <TransactionsListType>
+              <TransactionsTypeToggle className={isSwapsChart ? '' : 'active'} onClick={setTableType}>
+                Swaps
+              </TransactionsTypeToggle>
+              <TransactionsTypeToggle className={isSwapsChart ? 'active' : ''} onClick={setTableType}>
+                Liquidity
+              </TransactionsTypeToggle>
+            </TransactionsListType>
+          </RowBetween>
+        ) : null}
+        {/* {transactions ? <TransactionsTable transactions={transactions} color={activeNetwork.primaryColor} /> : null} */}
+        {transactions && isSwapsChart ? (
+          <LiquiditiesTransactionsTable transactions={transactions} color={activeNetwork.primaryColor} />
+        ) : null}
+        {transactions && !isSwapsChart ? (
+          <SwapsTransactionsTable transactions={transactions} color={activeNetwork.primaryColor} />
+        ) : null}
       </AutoColumn>
     </PageWrapper>
   )

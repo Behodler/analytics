@@ -129,7 +129,7 @@ export default function TokenPage({
       return chartData.map((day) => {
         return {
           time: unixToDate(day.date),
-          value: day.volumeUSD,
+          value: day.dailyVolumeUSD,
         }
       })
     } else {
@@ -171,7 +171,7 @@ export default function TokenPage({
         !tokenData.exists ? (
           <LightGreyCard style={{ textAlign: 'center' }}>
             No pool has been created with this token yet. Create one
-            <StyledExternalLink style={{ marginLeft: '4px' }} href={`https://app.uniswap.org/#/add/${address}`}>
+            <StyledExternalLink style={{ marginLeft: '4px' }} href={`https://app.behodler.io/#/add/${address}`}>
               here.
             </StyledExternalLink>
           </LightGreyCard>
@@ -234,7 +234,7 @@ export default function TokenPage({
                 </AutoColumn>
                 {activeNetwork !== EthereumNetworkInfo ? null : (
                   <RowFixed>
-                    <StyledExternalLink href={`https://app.uniswap.org/#/add/${address}`}>
+                    <StyledExternalLink href={`https://app.behodler.io/#/add/${address}`}>
                       <ButtonGray width="170px" mr="12px" height={'100%'} style={{ height: '44px' }}>
                         <RowBetween>
                           <Download size={24} />
@@ -242,7 +242,7 @@ export default function TokenPage({
                         </RowBetween>
                       </ButtonGray>
                     </StyledExternalLink>
-                    <StyledExternalLink href={`https://app.uniswap.org/#/swap?inputCurrency=${address}`}>
+                    <StyledExternalLink href={`https://app.behodler.io/#/swap?inputCurrency=${address}`}>
                       <ButtonPrimary width="100px" bgColor={backgroundColor} style={{ height: '44px' }}>
                         Trade
                       </ButtonPrimary>
@@ -256,17 +256,17 @@ export default function TokenPage({
                 <AutoColumn gap="lg">
                   <AutoColumn gap="4px">
                     <TYPE.main fontWeight={400}>TVL</TYPE.main>
-                    <TYPE.label fontSize="24px">{formatDollarAmount(tokenData.tvlUSD)}</TYPE.label>
-                    <Percent value={tokenData.tvlUSDChange} />
+                    <TYPE.label fontSize="24px">{formatDollarAmount(tokenData.totalLiquidityUSD)}</TYPE.label>
+                    <Percent value={tokenData.totalLiquidityUSDChange} />
                   </AutoColumn>
                   <AutoColumn gap="4px">
                     <TYPE.main fontWeight={400}>24h Trading Vol</TYPE.main>
-                    <TYPE.label fontSize="24px">{formatDollarAmount(tokenData.volumeUSD)}</TYPE.label>
-                    <Percent value={tokenData.volumeUSDChange} />
+                    <TYPE.label fontSize="24px">{formatDollarAmount(tokenData.dailyVolumeUSD)}</TYPE.label>
+                    <Percent value={tokenData.dailyVolumeUSDChange} />
                   </AutoColumn>
                   <AutoColumn gap="4px">
                     <TYPE.main fontWeight={400}>7d Trading Vol</TYPE.main>
-                    <TYPE.label fontSize="24px">{formatDollarAmount(tokenData.volumeUSDWeek)}</TYPE.label>
+                    <TYPE.label fontSize="24px">{formatDollarAmount(tokenData.dailyVolumeUSDWeek)}</TYPE.label>
                   </AutoColumn>
                   <AutoColumn gap="4px">
                     <TYPE.main fontWeight={400}>24h Fees</TYPE.main>

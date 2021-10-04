@@ -25,7 +25,7 @@ export const TOKENS_BULK = (block: number | undefined, tokens: string[]) => {
         symbol
         name
         derivedETH
-        volumeUSD
+        dailyVolumeUSD
         volume
         txCount
         totalValueLocked
@@ -42,7 +42,7 @@ interface TokenFields {
   symbol: string
   name: string
   derivedETH: string
-  volumeUSD: string
+  dailyVolumeUSD: string
   volume: string
   feesUSD: string
   txCount: string
@@ -157,21 +157,21 @@ export function useFetchedTokenDatas(
     const twoDay: TokenFields | undefined = parsed48[address]
     const week: TokenFields | undefined = parsedWeek[address]
 
-    const [volumeUSD, volumeUSDChange] =
+    const [dailyVolumeUSD, dailyVolumeUSDChange] =
       current && oneDay && twoDay
-        ? get2DayChange(current.volumeUSD, oneDay.volumeUSD, twoDay.volumeUSD)
+        ? get2DayChange(current.dailyVolumeUSD, oneDay.dailyVolumeUSD, twoDay.dailyVolumeUSD)
         : current
-        ? [parseFloat(current.volumeUSD), 0]
+        ? [parseFloat(current.dailyVolumeUSD), 0]
         : [0, 0]
 
-    const volumeUSDWeek =
+    const dailyVolumeUSDWeek =
       current && week
-        ? parseFloat(current.volumeUSD) - parseFloat(week.volumeUSD)
+        ? parseFloat(current.dailyVolumeUSD) - parseFloat(week.dailyVolumeUSD)
         : current
-        ? parseFloat(current.volumeUSD)
+        ? parseFloat(current.dailyVolumeUSD)
         : 0
-    const tvlUSD = current ? parseFloat(current.totalValueLockedUSD) : 0
-    const tvlUSDChange = getPercentChange(current?.totalValueLockedUSD, oneDay?.totalValueLockedUSD)
+    const totalLiquidityUSD = current ? parseFloat(current.totalValueLockedUSD) : 0
+    const totalLiquidityUSDChange = getPercentChange(current?.totalValueLockedUSD, oneDay?.totalValueLockedUSD)
     const tvlToken = current ? parseFloat(current.totalValueLocked) : 0
     const priceUSD = current ? parseFloat(current.derivedETH) * ethPrices.current : 0
     const priceUSDOneDay = oneDay ? parseFloat(oneDay.derivedETH) * ethPrices.oneDay : 0
@@ -198,13 +198,13 @@ export function useFetchedTokenDatas(
       address,
       name: current ? formatTokenName(address, current.name) : '',
       symbol: current ? formatTokenSymbol(address, current.symbol) : '',
-      volumeUSD,
-      volumeUSDChange,
-      volumeUSDWeek,
+      dailyVolumeUSD,
+      dailyVolumeUSDChange,
+      dailyVolumeUSDWeek,
       txCount,
-      tvlUSD,
+      totalLiquidityUSD,
       feesUSD,
-      tvlUSDChange,
+      totalLiquidityUSDChange,
       tvlToken,
       priceUSD,
       priceUSDChange,

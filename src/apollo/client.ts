@@ -21,7 +21,35 @@ export const blockClient = new ApolloClient({
 })
 
 export const client = new ApolloClient({
-  uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3',
+  uri: 'https://api.thegraph.com/subgraphs/name/arrenv/behodler',
+  cache: new InMemoryCache({
+    typePolicies: {
+      Token: {
+        // Singleton types that have no identifying field can use an empty
+        // array for their keyFields.
+        keyFields: false,
+      },
+      Pool: {
+        // Singleton types that have no identifying field can use an empty
+        // array for their keyFields.
+        keyFields: false,
+      },
+    },
+  }),
+  queryDeduplication: true,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  },
+})
+
+export const behodlerClient = new ApolloClient({
+  uri: 'https://thegraph.com/legacy-explorer/subgraph/arrenv/behodler',
   cache: new InMemoryCache({
     typePolicies: {
       Token: {
@@ -49,7 +77,7 @@ export const client = new ApolloClient({
 })
 
 export const arbitrumClient = new ApolloClient({
-  uri: 'https://api.thegraph.com/subgraphs/name/ianlapham/arbitrum-dev',
+  uri: 'https://thegraph.com/legacy-explorer/subgraph/arrenv/behodler',
   cache: new InMemoryCache({
     typePolicies: {
       Token: {
@@ -77,7 +105,7 @@ export const arbitrumClient = new ApolloClient({
 })
 
 export const arbitrumBlockClient = new ApolloClient({
-  uri: 'https://api.thegraph.com/subgraphs/name/ianlapham/arbitrum-one-blocks',
+  uri: 'https://thegraph.com/legacy-explorer/subgraph/arrenv/behodler',
   cache: new InMemoryCache(),
   queryDeduplication: true,
   defaultOptions: {
@@ -92,7 +120,7 @@ export const arbitrumBlockClient = new ApolloClient({
 })
 
 export const optimismClient = new ApolloClient({
-  uri: 'https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-optimism-dev',
+  uri: 'https://thegraph.com/legacy-explorer/subgraph/arrenv/behodler',
   cache: new InMemoryCache({
     typePolicies: {
       Token: {
@@ -120,7 +148,7 @@ export const optimismClient = new ApolloClient({
 })
 
 export const optimismBlockClient = new ApolloClient({
-  uri: 'https://api.thegraph.com/subgraphs/name/ianlapham/optimism-blocks',
+  uri: 'https://thegraph.com/legacy-explorer/subgraph/arrenv/behodler',
   cache: new InMemoryCache(),
   queryDeduplication: true,
   defaultOptions: {

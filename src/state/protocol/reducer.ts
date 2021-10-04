@@ -1,25 +1,38 @@
 import { currentTimestamp } from './../../utils/index'
 import { updateProtocolData, updateChartData, updateTransactions } from './actions'
 import { createReducer } from '@reduxjs/toolkit'
-import { ChartDayData, Transaction } from 'types'
+import { ChartDayData, TransactionsProtocol } from 'types'
 import { SupportedNetwork } from 'constants/networks'
 
 export interface ProtocolData {
   // volume
-  volumeUSD: number
-  volumeUSDChange: number
+  totalVolumeUSD: number
+  // dailyVolumeUSD: number
+  // dailyVolumeUSDChange: number
+  // // volume
+  // volumeUSD: number
+  // volumeUSDChange: number
 
   // in range liquidity
-  tvlUSD: number
-  tvlUSDChange: number
+  totalLiquidityUSD: number
+  totalLiquidityUSDChange: number
+  // // in range liquidity
+  // tvlUSD: number
+  // tvlUSDChange: number
 
   // fees
-  feesUSD: number
-  feeChange: number
+  // feesUSD: number
+  // feeChange: number
+  // // fees
+  // feesUSD: number
+  // feeChange: number
 
   // transactions
-  txCount: number
-  txCountChange: number
+  // txCount: number
+  // txCountChange: number
+  // // transactions
+  // txCount: number
+  // txCountChange: number
 }
 
 export interface ProtocolState {
@@ -29,7 +42,7 @@ export interface ProtocolState {
     // overview data
     readonly data: ProtocolData | undefined
     readonly chartData: ChartDayData[] | undefined
-    readonly transactions: Transaction[] | undefined
+    readonly transactions: TransactionsProtocol | undefined
   }
 }
 

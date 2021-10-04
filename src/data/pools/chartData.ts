@@ -21,8 +21,8 @@ const POOL_CHART = gql`
       subgraphError: allow
     ) {
       date
-      volumeUSD
-      tvlUSD
+      dailyVolumeUSD
+      totalLiquidityUSD
     }
   }
 `
@@ -30,16 +30,16 @@ const POOL_CHART = gql`
 interface ChartResults {
   poolDayDatas: {
     date: number
-    volumeUSD: string
-    tvlUSD: string
+    dailyVolumeUSD: string
+    totalLiquidityUSD: string
   }[]
 }
 
 export async function fetchPoolChartData(address: string, client: ApolloClient<NormalizedCacheObject>) {
   let data: {
     date: number
-    volumeUSD: string
-    tvlUSD: string
+    dailyVolumeUSD: string
+    totalLiquidityUSD: string
   }[] = []
   const startTimestamp = 1619170975
   const endTimestamp = dayjs.utc().unix()
@@ -78,8 +78,8 @@ export async function fetchPoolChartData(address: string, client: ApolloClient<N
       const roundedDate = parseInt((dayData.date / ONE_DAY_UNIX).toFixed(0))
       accum[roundedDate] = {
         date: dayData.date,
-        volumeUSD: parseFloat(dayData.volumeUSD),
-        totalValueLockedUSD: parseFloat(dayData.tvlUSD),
+        dailyVolumeUSD: parseFloat(dayData.dailyVolumeUSD),
+        totalValueLockedUSD: parseFloat(dayData.totalLiquidityUSD),
       }
       return accum
     }, {})
@@ -95,7 +95,7 @@ export async function fetchPoolChartData(address: string, client: ApolloClient<N
       if (!Object.keys(formattedExisting).includes(currentDayIndex.toString())) {
         formattedExisting[currentDayIndex] = {
           date: nextDay,
-          volumeUSD: 0,
+          dailyVolumeUSD: 0,
           totalValueLockedUSD: latestTvl,
         }
       } else {

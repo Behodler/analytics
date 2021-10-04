@@ -1,6 +1,6 @@
 import { ProtocolData } from './reducer'
 import { createAction } from '@reduxjs/toolkit'
-import { ChartDayData, Transaction } from 'types'
+import { ChartDayData, TransactionsProtocol } from 'types'
 import { SupportedNetwork } from 'constants/networks'
 
 // protocol wide info
@@ -10,6 +10,6 @@ export const updateProtocolData = createAction<{ protocolData: ProtocolData; net
 export const updateChartData = createAction<{ chartData: ChartDayData[]; networkId: SupportedNetwork }>(
   'protocol/updateChartData'
 )
-export const updateTransactions = createAction<{ transactions: Transaction[]; networkId: SupportedNetwork }>(
+export const updateTransactions = createAction<{ transactions: TransactionsProtocol; networkId: SupportedNetwork }>(
   'protocol/updateTransactions'
 )

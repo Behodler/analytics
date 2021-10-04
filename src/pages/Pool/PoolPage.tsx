@@ -109,7 +109,7 @@ export default function PoolPage({
       return chartData.map((day) => {
         return {
           time: unixToDate(day.date),
-          value: day.volumeUSD,
+          value: day.dailyVolumeUSD,
         }
       })
     } else {
@@ -189,7 +189,7 @@ export default function PoolPage({
             {activeNetwork !== EthereumNetworkInfo ? null : (
               <RowFixed>
                 <StyledExternalLink
-                  href={`https://app.uniswap.org/#/add/${poolData.token0.address}/${poolData.token1.address}/${poolData.feeTier}`}
+                  href={`https://app.behodler.io/#/add/${poolData.token0.address}/${poolData.token1.address}/${poolData.feeTier}`}
                 >
                   <ButtonGray width="170px" mr="12px" style={{ height: '44px' }}>
                     <RowBetween>
@@ -199,7 +199,7 @@ export default function PoolPage({
                   </ButtonGray>
                 </StyledExternalLink>
                 <StyledExternalLink
-                  href={`https://app.uniswap.org/#/swap?inputCurrency=${poolData.token0.address}&outputCurrency=${poolData.token1.address}`}
+                  href={`https://app.behodler.io/#/swap?inputCurrency=${poolData.token0.address}&outputCurrency=${poolData.token1.address}`}
                 >
                   <ButtonPrimary width="100px" style={{ height: '44px' }}>
                     Trade
@@ -236,18 +236,18 @@ export default function PoolPage({
                 </GreyCard>
                 <AutoColumn gap="4px">
                   <TYPE.main fontWeight={400}>TVL</TYPE.main>
-                  <TYPE.label fontSize="24px">{formatDollarAmount(poolData.tvlUSD)}</TYPE.label>
-                  <Percent value={poolData.tvlUSDChange} />
+                  <TYPE.label fontSize="24px">{formatDollarAmount(poolData.totalLiquidityUSD)}</TYPE.label>
+                  <Percent value={poolData.totalLiquidityUSDChange} />
                 </AutoColumn>
                 <AutoColumn gap="4px">
                   <TYPE.main fontWeight={400}>Volume 24h</TYPE.main>
-                  <TYPE.label fontSize="24px">{formatDollarAmount(poolData.volumeUSD)}</TYPE.label>
-                  <Percent value={poolData.volumeUSDChange} />
+                  <TYPE.label fontSize="24px">{formatDollarAmount(poolData.dailyVolumeUSD)}</TYPE.label>
+                  <Percent value={poolData.dailyVolumeUSDChange} />
                 </AutoColumn>
                 <AutoColumn gap="4px">
                   <TYPE.main fontWeight={400}>24h Fees</TYPE.main>
                   <TYPE.label fontSize="24px">
-                    {formatDollarAmount(poolData.volumeUSD * (poolData.feeTier / 1000000))}
+                    {formatDollarAmount(poolData.dailyVolumeUSD * (poolData.feeTier / 1000000))}
                   </TYPE.label>
                 </AutoColumn>
               </AutoColumn>
