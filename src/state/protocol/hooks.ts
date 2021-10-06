@@ -3,7 +3,7 @@ import { AppState, AppDispatch } from './../index'
 import { ProtocolData } from './reducer'
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ChartDayData, Transaction } from 'types'
+import { ChartDayData, Transaction, TransactionsProtocol } from 'types'
 import { useActiveNetworkVersion } from 'state/application/hooks'
 import { useFetchAggregateProtocolData } from 'data/protocol/overview'
 
@@ -35,14 +35,17 @@ export function useProtocolChartData(): [ChartDayData[] | undefined, (chartData:
   return [chartData, setChartData]
 }
 
-export function useProtocolTransactions(): [Transaction[] | undefined, (transactions: Transaction[]) => void] {
+export function useProtocolTransactions(): [
+  TransactionsProtocol | undefined,
+  (transactions: TransactionsProtocol) => void
+] {
   const [activeNetwork] = useActiveNetworkVersion()
-  const transactions: Transaction[] | undefined = useSelector(
+  const transactions: TransactionsProtocol | undefined = useSelector(
     (state: AppState) => state.protocol[activeNetwork.id]?.transactions
   )
   const dispatch = useDispatch<AppDispatch>()
-  const setTransactions: (transactions: Transaction[]) => void = useCallback(
-    (transactions: Transaction[]) => dispatch(updateTransactions({ transactions, networkId: activeNetwork.id })),
+  const setTransactions: (transactions: TransactionsProtocol) => void = useCallback(
+    (transactions: TransactionsProtocol) => dispatch(updateTransactions({ transactions, networkId: activeNetwork.id })),
     [activeNetwork.id, dispatch]
   )
   return [transactions, setTransactions]

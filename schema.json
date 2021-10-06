@@ -3950,7 +3950,7 @@
             "deprecationReason": null
           },
           {
-            "name": "totalVolumeUSD",
+            "name": "totaldailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -3982,7 +3982,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -4395,7 +4395,7 @@
             "deprecationReason": null
           },
           {
-            "name": "totalVolumeUSD",
+            "name": "totaldailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4407,7 +4407,7 @@
             "deprecationReason": null
           },
           {
-            "name": "totalVolumeUSD_not",
+            "name": "totaldailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4419,7 +4419,7 @@
             "deprecationReason": null
           },
           {
-            "name": "totalVolumeUSD_gt",
+            "name": "totaldailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4431,7 +4431,7 @@
             "deprecationReason": null
           },
           {
-            "name": "totalVolumeUSD_lt",
+            "name": "totaldailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4443,7 +4443,7 @@
             "deprecationReason": null
           },
           {
-            "name": "totalVolumeUSD_gte",
+            "name": "totaldailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4455,7 +4455,7 @@
             "deprecationReason": null
           },
           {
-            "name": "totalVolumeUSD_lte",
+            "name": "totaldailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4467,7 +4467,7 @@
             "deprecationReason": null
           },
           {
-            "name": "totalVolumeUSD_in",
+            "name": "totaldailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -4487,7 +4487,7 @@
             "deprecationReason": null
           },
           {
-            "name": "totalVolumeUSD_not_in",
+            "name": "totaldailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -4619,7 +4619,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4631,7 +4631,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_not",
+            "name": "untrackeddailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4643,7 +4643,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_gt",
+            "name": "untrackeddailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4655,7 +4655,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_lt",
+            "name": "untrackeddailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4667,7 +4667,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_gte",
+            "name": "untrackeddailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4679,7 +4679,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_lte",
+            "name": "untrackeddailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4691,7 +4691,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_in",
+            "name": "untrackeddailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -4711,7 +4711,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_not_in",
+            "name": "untrackeddailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -5099,7 +5099,7 @@
             "deprecationReason": null
           },
           {
-            "name": "totalVolumeUSD",
+            "name": "totaldailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -5111,7 +5111,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -9096,7 +9096,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -9112,7 +9112,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -10003,7 +10003,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD",
+            "name": "totalLiquidityUSD",
             "description": null,
             "args": [],
             "type": {
@@ -10051,7 +10051,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -11064,7 +11064,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD",
+            "name": "totalLiquidityUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11076,7 +11076,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_not",
+            "name": "totalLiquidityUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11088,7 +11088,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_gt",
+            "name": "totalLiquidityUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11100,7 +11100,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_lt",
+            "name": "totalLiquidityUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11112,7 +11112,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_gte",
+            "name": "totalLiquidityUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11124,7 +11124,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_lte",
+            "name": "totalLiquidityUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11136,7 +11136,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_in",
+            "name": "totalLiquidityUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -11156,7 +11156,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_not_in",
+            "name": "totalLiquidityUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -11400,7 +11400,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11412,7 +11412,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not",
+            "name": "dailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11424,7 +11424,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gt",
+            "name": "dailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11436,7 +11436,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lt",
+            "name": "dailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11448,7 +11448,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gte",
+            "name": "dailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11460,7 +11460,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lte",
+            "name": "dailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -11472,7 +11472,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_in",
+            "name": "dailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -11492,7 +11492,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not_in",
+            "name": "dailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -11686,7 +11686,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD",
+            "name": "totalLiquidityUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -11704,7 +11704,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -11849,7 +11849,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD",
+            "name": "totalLiquidityUSD",
             "description": null,
             "args": [],
             "type": {
@@ -11897,7 +11897,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -12910,7 +12910,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD",
+            "name": "totalLiquidityUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -12922,7 +12922,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_not",
+            "name": "totalLiquidityUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -12934,7 +12934,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_gt",
+            "name": "totalLiquidityUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -12946,7 +12946,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_lt",
+            "name": "totalLiquidityUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -12958,7 +12958,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_gte",
+            "name": "totalLiquidityUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -12970,7 +12970,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_lte",
+            "name": "totalLiquidityUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -12982,7 +12982,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_in",
+            "name": "totalLiquidityUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -13002,7 +13002,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_not_in",
+            "name": "totalLiquidityUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -13246,7 +13246,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13258,7 +13258,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not",
+            "name": "dailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13270,7 +13270,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gt",
+            "name": "dailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13282,7 +13282,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lt",
+            "name": "dailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13294,7 +13294,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gte",
+            "name": "dailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13306,7 +13306,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lte",
+            "name": "dailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13318,7 +13318,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_in",
+            "name": "dailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -13338,7 +13338,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not_in",
+            "name": "dailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -13532,7 +13532,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD",
+            "name": "totalLiquidityUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -13550,7 +13550,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -15284,7 +15284,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15296,7 +15296,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not",
+            "name": "dailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15308,7 +15308,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gt",
+            "name": "dailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15320,7 +15320,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lt",
+            "name": "dailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15332,7 +15332,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gte",
+            "name": "dailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15344,7 +15344,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lte",
+            "name": "dailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15356,7 +15356,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_in",
+            "name": "dailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -15376,7 +15376,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not_in",
+            "name": "dailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -15396,7 +15396,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15408,7 +15408,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_not",
+            "name": "untrackeddailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15420,7 +15420,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_gt",
+            "name": "untrackeddailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15432,7 +15432,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_lt",
+            "name": "untrackeddailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15444,7 +15444,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_gte",
+            "name": "untrackeddailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15456,7 +15456,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_lte",
+            "name": "untrackeddailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -15468,7 +15468,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_in",
+            "name": "untrackeddailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -15488,7 +15488,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_not_in",
+            "name": "untrackeddailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -16614,13 +16614,13 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -23471,7 +23471,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -23487,7 +23487,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -23739,7 +23739,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -24808,7 +24808,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -24820,7 +24820,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not",
+            "name": "dailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -24832,7 +24832,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gt",
+            "name": "dailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -24844,7 +24844,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lt",
+            "name": "dailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -24856,7 +24856,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gte",
+            "name": "dailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -24868,7 +24868,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lte",
+            "name": "dailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -24880,7 +24880,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_in",
+            "name": "dailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -24900,7 +24900,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not_in",
+            "name": "dailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -24982,7 +24982,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -25125,7 +25125,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -26194,7 +26194,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -26206,7 +26206,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not",
+            "name": "dailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -26218,7 +26218,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gt",
+            "name": "dailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -26230,7 +26230,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lt",
+            "name": "dailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -26242,7 +26242,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gte",
+            "name": "dailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -26254,7 +26254,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lte",
+            "name": "dailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -26266,7 +26266,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_in",
+            "name": "dailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -26286,7 +26286,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not_in",
+            "name": "dailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -26368,7 +26368,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -27352,7 +27352,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -27364,7 +27364,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not",
+            "name": "dailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -27376,7 +27376,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gt",
+            "name": "dailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -27388,7 +27388,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lt",
+            "name": "dailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -27400,7 +27400,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gte",
+            "name": "dailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -27412,7 +27412,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lte",
+            "name": "dailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -27424,7 +27424,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_in",
+            "name": "dailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -27444,7 +27444,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not_in",
+            "name": "dailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -27464,7 +27464,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -27476,7 +27476,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_not",
+            "name": "untrackeddailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -27488,7 +27488,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_gt",
+            "name": "untrackeddailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -27500,7 +27500,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_lt",
+            "name": "untrackeddailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -27512,7 +27512,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_gte",
+            "name": "untrackeddailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -27524,7 +27524,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_lte",
+            "name": "untrackeddailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -27536,7 +27536,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_in",
+            "name": "untrackeddailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -27556,7 +27556,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_not_in",
+            "name": "untrackeddailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -28310,13 +28310,13 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -28463,7 +28463,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -28479,7 +28479,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -28821,7 +28821,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -28837,7 +28837,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -29434,7 +29434,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -29446,7 +29446,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not",
+            "name": "dailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -29458,7 +29458,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gt",
+            "name": "dailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -29470,7 +29470,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lt",
+            "name": "dailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -29482,7 +29482,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gte",
+            "name": "dailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -29494,7 +29494,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lte",
+            "name": "dailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -29506,7 +29506,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_in",
+            "name": "dailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -29526,7 +29526,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not_in",
+            "name": "dailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -29546,7 +29546,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -29558,7 +29558,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_not",
+            "name": "untrackeddailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -29570,7 +29570,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_gt",
+            "name": "untrackeddailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -29582,7 +29582,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_lt",
+            "name": "untrackeddailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -29594,7 +29594,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_gte",
+            "name": "untrackeddailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -29606,7 +29606,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_lte",
+            "name": "untrackeddailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -29618,7 +29618,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_in",
+            "name": "untrackeddailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -29638,7 +29638,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_not_in",
+            "name": "untrackeddailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -30032,13 +30032,13 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -30888,7 +30888,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -30900,7 +30900,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not",
+            "name": "dailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -30912,7 +30912,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gt",
+            "name": "dailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -30924,7 +30924,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lt",
+            "name": "dailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -30936,7 +30936,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gte",
+            "name": "dailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -30948,7 +30948,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lte",
+            "name": "dailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -30960,7 +30960,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_in",
+            "name": "dailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -30980,7 +30980,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not_in",
+            "name": "dailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -31000,7 +31000,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -31012,7 +31012,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_not",
+            "name": "untrackeddailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -31024,7 +31024,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_gt",
+            "name": "untrackeddailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -31036,7 +31036,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_lt",
+            "name": "untrackeddailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -31048,7 +31048,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_gte",
+            "name": "untrackeddailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -31060,7 +31060,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_lte",
+            "name": "untrackeddailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -31072,7 +31072,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_in",
+            "name": "untrackeddailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -31092,7 +31092,7 @@
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD_not_in",
+            "name": "untrackeddailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -31802,13 +31802,13 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "untrackedVolumeUSD",
+            "name": "untrackeddailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -32786,7 +32786,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "args": [],
             "type": {
@@ -32802,7 +32802,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSDUntracked",
+            "name": "dailyVolumeUSDUntracked",
             "description": null,
             "args": [],
             "type": {
@@ -32834,7 +32834,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD",
+            "name": "totalLiquidityUSD",
             "description": null,
             "args": [],
             "type": {
@@ -33199,7 +33199,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33211,7 +33211,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not",
+            "name": "dailyVolumeUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33223,7 +33223,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gt",
+            "name": "dailyVolumeUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33235,7 +33235,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lt",
+            "name": "dailyVolumeUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33247,7 +33247,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_gte",
+            "name": "dailyVolumeUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33259,7 +33259,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_lte",
+            "name": "dailyVolumeUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33271,7 +33271,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_in",
+            "name": "dailyVolumeUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -33291,7 +33291,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD_not_in",
+            "name": "dailyVolumeUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -33311,7 +33311,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSDUntracked",
+            "name": "dailyVolumeUSDUntracked",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33323,7 +33323,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSDUntracked_not",
+            "name": "dailyVolumeUSDUntracked_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33335,7 +33335,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSDUntracked_gt",
+            "name": "dailyVolumeUSDUntracked_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33347,7 +33347,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSDUntracked_lt",
+            "name": "dailyVolumeUSDUntracked_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33359,7 +33359,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSDUntracked_gte",
+            "name": "dailyVolumeUSDUntracked_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33371,7 +33371,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSDUntracked_lte",
+            "name": "dailyVolumeUSDUntracked_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33383,7 +33383,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSDUntracked_in",
+            "name": "dailyVolumeUSDUntracked_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -33403,7 +33403,7 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSDUntracked_not_in",
+            "name": "dailyVolumeUSDUntracked_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -33535,7 +33535,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD",
+            "name": "totalLiquidityUSD",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33547,7 +33547,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_not",
+            "name": "totalLiquidityUSD_not",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33559,7 +33559,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_gt",
+            "name": "totalLiquidityUSD_gt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33571,7 +33571,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_lt",
+            "name": "totalLiquidityUSD_lt",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33583,7 +33583,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_gte",
+            "name": "totalLiquidityUSD_gte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33595,7 +33595,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_lte",
+            "name": "totalLiquidityUSD_lte",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -33607,7 +33607,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_in",
+            "name": "totalLiquidityUSD_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -33627,7 +33627,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD_not_in",
+            "name": "totalLiquidityUSD_not_in",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -33679,13 +33679,13 @@
             "deprecationReason": null
           },
           {
-            "name": "volumeUSD",
+            "name": "dailyVolumeUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "volumeUSDUntracked",
+            "name": "dailyVolumeUSDUntracked",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -33697,7 +33697,7 @@
             "deprecationReason": null
           },
           {
-            "name": "tvlUSD",
+            "name": "totalLiquidityUSD",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

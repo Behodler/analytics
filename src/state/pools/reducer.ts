@@ -39,13 +39,13 @@ export interface PoolData {
   tick: number
 
   // volume
-  volumeUSD: number
-  volumeUSDChange: number
-  volumeUSDWeek: number
+  dailyVolumeUSD: number
+  dailyVolumeUSDChange: number
+  dailyVolumeUSDWeek: number
 
   // liquidity
-  tvlUSD: number
-  tvlUSDChange: number
+  totalLiquidityUSD: number
+  totalLiquidityUSDChange: number
 
   // prices
   token0Price: number
@@ -58,7 +58,7 @@ export interface PoolData {
 
 export type PoolChartEntry = {
   date: number
-  volumeUSD: number
+  dailyVolumeUSD: number
   totalValueLockedUSD: number
 }
 

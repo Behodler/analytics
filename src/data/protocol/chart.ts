@@ -14,8 +14,8 @@ dayjs.extend(weekOfYear)
 const ONE_DAY_UNIX = 24 * 60 * 60
 
 const GLOBAL_CHART = gql`
-  query uniswapDayDatas($startTime: Int!, $skip: Int!) {
-    uniswapDayDatas(
+  query behodlerDayDatas($startTime: Int!, $skip: Int!) {
+    behodlerDayDatas(
       first: 1000
       skip: $skip
       subgraphError: allow
@@ -25,25 +25,25 @@ const GLOBAL_CHART = gql`
     ) {
       id
       date
-      volumeUSD
-      tvlUSD
+      dailyVolumeUSD
+      totalLiquidityUSD
     }
   }
 `
 
 interface ChartResults {
-  uniswapDayDatas: {
+  behodlerDayDatas: {
     date: number
-    volumeUSD: string
-    tvlUSD: string
+    dailyVolumeUSD: string
+    totalLiquidityUSD: string
   }[]
 }
 
 async function fetchChartData(client: ApolloClient<NormalizedCacheObject>) {
   let data: {
     date: number
-    volumeUSD: string
-    tvlUSD: string
+    dailyVolumeUSD: string
+    totalLiquidityUSD: string
   }[] = []
   const startTimestamp = client === arbitrumClient ? 1630423606 : 1619170975
   const endTimestamp = dayjs.utc().unix()
@@ -64,11 +64,11 @@ async function fetchChartData(client: ApolloClient<NormalizedCacheObject>) {
       })
       if (!loading) {
         skip += 1000
-        if (chartResData.uniswapDayDatas.length < 1000 || error) {
+        if (chartResData.behodlerDayDatas.length < 1000 || error) {
           allFound = true
         }
         if (chartResData) {
-          data = data.concat(chartResData.uniswapDayDatas)
+          data = data.concat(chartResData.behodlerDayDatas)
         }
       }
     }
@@ -81,8 +81,8 @@ async function fetchChartData(client: ApolloClient<NormalizedCacheObject>) {
       const roundedDate = parseInt((dayData.date / ONE_DAY_UNIX).toFixed(0))
       accum[roundedDate] = {
         date: dayData.date,
-        volumeUSD: parseFloat(dayData.volumeUSD),
-        tvlUSD: parseFloat(dayData.tvlUSD),
+        dailyVolumeUSD: parseFloat(dayData.dailyVolumeUSD),
+        totalLiquidityUSD: parseFloat(dayData.totalLiquidityUSD),
       }
       return accum
     }, {})
@@ -91,18 +91,22 @@ async function fetchChartData(client: ApolloClient<NormalizedCacheObject>) {
 
     // fill in empty days ( there will be no day datas if no trades made that day )
     let timestamp = firstEntry?.date ?? startTimestamp
-    let latestTvl = firstEntry?.tvlUSD ?? 0
+    let latestLiquidity = firstEntry?.totalLiquidityUSD ?? 0
     while (timestamp < endTimestamp - ONE_DAY_UNIX) {
       const nextDay = timestamp + ONE_DAY_UNIX
       const currentDayIndex = parseInt((nextDay / ONE_DAY_UNIX).toFixed(0))
-      if (!Object.keys(formattedExisting).includes(currentDayIndex.toString())) {
+      if (
+        formattedExisting[currentDayIndex] &&
+        +formattedExisting[currentDayIndex].totalLiquidityUSD === 0 &&
+        nextDay > firstEntry.date
+      ) {
         formattedExisting[currentDayIndex] = {
           date: nextDay,
-          volumeUSD: 0,
-          tvlUSD: latestTvl,
+          dailyVolumeUSD: 0,
+          totalLiquidityUSD: latestLiquidity,
         }
-      } else {
-        latestTvl = formattedExisting[currentDayIndex].tvlUSD
+      } else if (formattedExisting[currentDayIndex]) {
+        latestLiquidity = formattedExisting[currentDayIndex].totalLiquidityUSD
       }
       timestamp = nextDay
     }

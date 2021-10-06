@@ -96,10 +96,10 @@ const DataRow = ({ tokenData, index }: { tokenData: TokenData; index: number }) 
           <Percent value={tokenData.priceUSDChange} fontWeight={400} />
         </Label>
         <Label end={1} fontWeight={400}>
-          {formatDollarAmount(tokenData.volumeUSD)}
+          {formatDollarAmount(tokenData.dailyVolumeUSD)}
         </Label>
         <Label end={1} fontWeight={400}>
-          {formatDollarAmount(tokenData.tvlUSD)}
+          {formatDollarAmount(tokenData.totalLiquidityUSD)}
         </Label>
       </ResponsiveGrid>
     </LinkWrapper>
@@ -108,8 +108,8 @@ const DataRow = ({ tokenData, index }: { tokenData: TokenData; index: number }) 
 
 const SORT_FIELD = {
   name: 'name',
-  volumeUSD: 'volumeUSD',
-  tvlUSD: 'tvlUSD',
+  dailyVolumeUSD: 'dailyVolumeUSD',
+  totalLiquidityUSD: 'totalLiquidityUSD',
   priceUSD: 'priceUSD',
   priceUSDChange: 'priceUSDChange',
   priceUSDChangeWeek: 'priceUSDChangeWeek',
@@ -128,7 +128,7 @@ export default function TokenTable({
   const theme = useTheme()
 
   // for sorting
-  const [sortField, setSortField] = useState(SORT_FIELD.tvlUSD)
+  const [sortField, setSortField] = useState(SORT_FIELD.totalLiquidityUSD)
   const [sortDirection, setSortDirection] = useState<boolean>(true)
 
   // pagination
@@ -198,11 +198,11 @@ export default function TokenTable({
             {/* <ClickableText end={1} onClick={() => handleSort(SORT_FIELD.priceUSDChangeWeek)}>
             7d {arrow(SORT_FIELD.priceUSDChangeWeek)}
           </ClickableText> */}
-            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.volumeUSD)}>
-              Volume 24H {arrow(SORT_FIELD.volumeUSD)}
+            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.dailyVolumeUSD)}>
+              Volume 24H {arrow(SORT_FIELD.dailyVolumeUSD)}
             </ClickableText>
-            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.tvlUSD)}>
-              TVL {arrow(SORT_FIELD.tvlUSD)}
+            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.totalLiquidityUSD)}>
+              TVL {arrow(SORT_FIELD.totalLiquidityUSD)}
             </ClickableText>
           </ResponsiveGrid>
 

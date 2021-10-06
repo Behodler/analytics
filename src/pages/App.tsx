@@ -9,7 +9,7 @@ import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 import Home from './Home'
 import PoolsOverview from './Pool/PoolsOverview'
 import TokensOverview from './Token/TokensOverview'
-import TopBar from 'components/Header/TopBar'
+import BottomInfo from 'components/Footer/BottomInfo'
 import { RedirectInvalidToken } from './Token/redirects'
 import { LocalLoader } from 'components/Loader'
 import PoolPage from './Pool/PoolPage'
@@ -24,6 +24,7 @@ const AppWrapper = styled.div`
   align-items: center;
   overflow-x: hidden;
   min-height: 100vh;
+  width: 100%;
 `
 
 const HeaderWrapper = styled.div`
@@ -52,7 +53,7 @@ const BodyWrapper = styled.div<{ warningActive?: boolean }>`
 
   @media (max-width: 1080px) {
     padding-top: 2rem;
-    margin-top: 140px;
+    margin-top: 80px;
   }
 `
 
@@ -61,6 +62,7 @@ const Marginer = styled.div`
 `
 
 const Hide1080 = styled.div`
+  width: 100%;
   @media (max-width: 1080px) {
     display: none;
   }
@@ -133,9 +135,6 @@ export default function App() {
                 </WarningBanner>
               </WarningWrapper>
             )}
-            <Hide1080>
-              <TopBar />
-            </Hide1080>
             <Header />
           </HeaderWrapper>
           {subgraphStatus.available === false ? (
@@ -145,7 +144,7 @@ export default function App() {
                   <TYPE.label>
                     The Graph hosted network which provides data for this site is temporarily experiences issues. Check
                     current status{' '}
-                    <ExternalLink href="https://thegraph.com/explorer/subgraph/ianlapham/uniswap-optimism">
+                    <ExternalLink href="https://thegraph.com/legacy-explorer/subgraph/arrenv/behodler">
                       here.
                     </ExternalLink>
                   </TYPE.label>
@@ -165,6 +164,9 @@ export default function App() {
               <Marginer />
             </BodyWrapper>
           )}
+          <Hide1080>
+            <BottomInfo />
+          </Hide1080>
         </AppWrapper>
       )}
     </Suspense>

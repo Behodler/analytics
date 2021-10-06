@@ -40,7 +40,7 @@ export const POOLS_BULK = (block: number | undefined, pools: string[]) => {
         }
         token0Price
         token1Price
-        volumeUSD
+        dailyVolumeUSD
         txCount
         totalValueLockedToken0
         totalValueLockedToken1
@@ -73,7 +73,7 @@ interface PoolFields {
   }
   token0Price: string
   token1Price: string
-  volumeUSD: string
+  dailyVolumeUSD: string
   txCount: string
   totalValueLockedToken0: string
   totalValueLockedToken1: string
@@ -167,23 +167,23 @@ export function usePoolDatas(
     const twoDay: PoolFields | undefined = parsed48[address]
     const week: PoolFields | undefined = parsedWeek[address]
 
-    const [volumeUSD, volumeUSDChange] =
+    const [dailyVolumeUSD, dailyVolumeUSDChange] =
       current && oneDay && twoDay
-        ? get2DayChange(current.volumeUSD, oneDay.volumeUSD, twoDay.volumeUSD)
+        ? get2DayChange(current.dailyVolumeUSD, oneDay.dailyVolumeUSD, twoDay.dailyVolumeUSD)
         : current
-        ? [parseFloat(current.volumeUSD), 0]
+        ? [parseFloat(current.dailyVolumeUSD), 0]
         : [0, 0]
 
-    const volumeUSDWeek =
+    const dailyVolumeUSDWeek =
       current && week
-        ? parseFloat(current.volumeUSD) - parseFloat(week.volumeUSD)
+        ? parseFloat(current.dailyVolumeUSD) - parseFloat(week.dailyVolumeUSD)
         : current
-        ? parseFloat(current.volumeUSD)
+        ? parseFloat(current.dailyVolumeUSD)
         : 0
 
-    const tvlUSD = current ? parseFloat(current.totalValueLockedUSD) : 0
+    const totalLiquidityUSD = current ? parseFloat(current.totalValueLockedUSD) : 0
 
-    const tvlUSDChange =
+    const totalLiquidityUSDChange =
       current && oneDay
         ? ((parseFloat(current.totalValueLockedUSD) - parseFloat(oneDay.totalValueLockedUSD)) /
             parseFloat(oneDay.totalValueLockedUSD)) *
@@ -218,11 +218,11 @@ export function usePoolDatas(
         },
         token0Price: parseFloat(current.token0Price),
         token1Price: parseFloat(current.token1Price),
-        volumeUSD,
-        volumeUSDChange,
-        volumeUSDWeek,
-        tvlUSD,
-        tvlUSDChange,
+        dailyVolumeUSD,
+        dailyVolumeUSDChange,
+        dailyVolumeUSDWeek,
+        totalLiquidityUSD,
+        totalLiquidityUSDChange,
         tvlToken0,
         tvlToken1,
       }

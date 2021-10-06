@@ -1,8 +1,8 @@
-## Uniswap Info V3
+## Behodler
 
-An open sourced interface for Uniswap V3 analytics. 
+An open sourced interface for Behodler analytics.
 
-Info URL: https://info.uniswap.org/#/
+Analytics URL: https://analytics.behodler.io/
 
 ## Development
 

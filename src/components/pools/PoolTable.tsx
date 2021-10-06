@@ -60,9 +60,9 @@ const LinkWrapper = styled(Link)`
 
 const SORT_FIELD = {
   feeTier: 'feeTier',
-  volumeUSD: 'volumeUSD',
-  tvlUSD: 'tvlUSD',
-  volumeUSDWeek: 'volumeUSDWeek',
+  dailyVolumeUSD: 'dailyVolumeUSD',
+  totalLiquidityUSD: 'totalLiquidityUSD',
+  dailyVolumeUSDWeek: 'dailyVolumeUSDWeek',
 }
 
 const DataRow = ({ poolData, index }: { poolData: PoolData; index: number }) => {
@@ -84,13 +84,13 @@ const DataRow = ({ poolData, index }: { poolData: PoolData; index: number }) => 
           </RowFixed>
         </Label>
         <Label end={1} fontWeight={400}>
-          {formatDollarAmount(poolData.tvlUSD)}
+          {formatDollarAmount(poolData.totalLiquidityUSD)}
         </Label>
         <Label end={1} fontWeight={400}>
-          {formatDollarAmount(poolData.volumeUSD)}
+          {formatDollarAmount(poolData.dailyVolumeUSD)}
         </Label>
         <Label end={1} fontWeight={400}>
-          {formatDollarAmount(poolData.volumeUSDWeek)}
+          {formatDollarAmount(poolData.dailyVolumeUSDWeek)}
         </Label>
       </ResponsiveGrid>
     </LinkWrapper>
@@ -104,7 +104,7 @@ export default function PoolTable({ poolDatas, maxItems = MAX_ITEMS }: { poolDat
   const theme = useTheme()
 
   // for sorting
-  const [sortField, setSortField] = useState(SORT_FIELD.tvlUSD)
+  const [sortField, setSortField] = useState(SORT_FIELD.totalLiquidityUSD)
   const [sortDirection, setSortDirection] = useState<boolean>(true)
 
   // pagination
@@ -163,14 +163,14 @@ export default function PoolTable({ poolDatas, maxItems = MAX_ITEMS }: { poolDat
             <ClickableText color={theme.text2} onClick={() => handleSort(SORT_FIELD.feeTier)}>
               Pool {arrow(SORT_FIELD.feeTier)}
             </ClickableText>
-            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.tvlUSD)}>
-              TVL {arrow(SORT_FIELD.tvlUSD)}
+            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.totalLiquidityUSD)}>
+              TVL {arrow(SORT_FIELD.totalLiquidityUSD)}
             </ClickableText>
-            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.volumeUSD)}>
-              Volume 24H {arrow(SORT_FIELD.volumeUSD)}
+            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.dailyVolumeUSD)}>
+              Volume 24H {arrow(SORT_FIELD.dailyVolumeUSD)}
             </ClickableText>
-            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.volumeUSDWeek)}>
-              Volume 7D {arrow(SORT_FIELD.volumeUSDWeek)}
+            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.dailyVolumeUSDWeek)}>
+              Volume 7D {arrow(SORT_FIELD.dailyVolumeUSDWeek)}
             </ClickableText>
           </ResponsiveGrid>
           <Break />

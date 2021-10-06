@@ -42,8 +42,8 @@ const DataCard = ({ poolData }: { poolData: PoolData }) => {
             </GreyBadge>
           </RowFixed>
           <RowFixed>
-            <TYPE.label mr="6px">{formatDollarAmount(poolData.volumeUSD)}</TYPE.label>
-            <Percent fontSize="14px" value={poolData.volumeUSDChange} />
+            <TYPE.label mr="6px">{formatDollarAmount(poolData.dailyVolumeUSD)}</TYPE.label>
+            <Percent fontSize="14px" value={poolData.dailyVolumeUSDChange} />
           </RowFixed>
         </AutoColumn>
       </Wrapper>
@@ -57,7 +57,7 @@ export default function TopPoolMovers() {
   const topVolume = useMemo(() => {
     return Object.values(allPools)
       .sort(({ data: a }, { data: b }) => {
-        return a && b ? (a?.volumeUSDChange > b?.volumeUSDChange ? -1 : 1) : -1
+        return a && b ? (a?.dailyVolumeUSDChange > b?.dailyVolumeUSDChange ? -1 : 1) : -1
       })
       .slice(0, Math.min(20, Object.values(allPools).length))
   }, [allPools])

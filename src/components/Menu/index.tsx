@@ -15,7 +15,7 @@ const StyledMenuIcon = styled(MenuIcon)`
 `
 
 const StyledMenuButton = styled.button`
-  width: 100%;
+  width: 40px;
   height: 100%;
   border: none;
   background-color: transparent;
@@ -31,7 +31,9 @@ const StyledMenuButton = styled.button`
   :focus {
     cursor: pointer;
     outline: none;
-    background-color: ${({ theme }) => theme.bg4};
+    svg path {
+      stroke: ${({ theme }) => theme.primary1};
+    }
   }
 
   svg {
@@ -42,8 +44,8 @@ const StyledMenuButton = styled.button`
 const StyledMenu = styled.div`
   margin-left: 0.5rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
   position: relative;
   border: none;
   text-align: left;
@@ -80,7 +82,7 @@ const MenuItem = styled(ExternalLink)`
   }
 `
 
-const CODE_LINK = 'https://github.com/Uniswap/uniswap-v3-info'
+const CODE_LINK = 'https://github.com/Behodler'
 
 export default function Menu() {
   const node = useRef<HTMLDivElement>()
@@ -97,11 +99,11 @@ export default function Menu() {
 
       {open && (
         <MenuFlyout>
-          <MenuItem id="link" href="https://uniswap.org/">
+          <MenuItem id="link" href="https://behodler.io/about">
             <Info size={14} />
             About
           </MenuItem>
-          <MenuItem id="link" href="https://docs.uniswap.org/">
+          <MenuItem id="link" href="https://docs.behodler.io/">
             <BookOpen size={14} />
             Docs
           </MenuItem>
@@ -109,7 +111,7 @@ export default function Menu() {
             <Code size={14} />
             Github
           </MenuItem>
-          <MenuItem id="link" href="https://discord.gg/FCfyBSbCU5">
+          <MenuItem id="link" href="https://discord.gg/drzGmkW">
             <MessageCircle size={14} />
             Discord
           </MenuItem>
