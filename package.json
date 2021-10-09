@@ -104,7 +104,7 @@
     "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'",
     "storybook": "start-storybook -p 6006",
     "test": "react-scripts test --env=jsdom",
-    "codegen:schema": "npx apollo client:download-schema --endpoint=https://thegraph.com/legacy-explorer/subgraph/arrenv/behodler",
+    "codegen:schema": "npx apollo client:download-schema --endpoint=https://api.thegraph.com/subgraphs/name/arrenv/behodler",
     "codegen:generate": "apollo codegen:generate --localSchemaFile=schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/graphql-global-types.ts types"
   },
   "eslintConfig": {

@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react'
 import gql from 'graphql-tag'
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import { useActiveNetworkVersion, useClients } from 'state/application/hooks'
+import { uniSwapclient } from '../../src/apollo/client'
 
 export interface EthPrices {
   current: number
@@ -94,7 +95,8 @@ async function fetchEthPrices(
 export function useEthPrices(): EthPrices | undefined {
   const [prices, setPrices] = useState<{ [network: string]: EthPrices | undefined }>()
   const [error, setError] = useState(false)
-  const { dataClient } = useClients()
+  // const { dataClient } = useClients()
+  const dataClient = uniSwapclient
 
   const [t24, t48, tWeek] = useDeltaTimestamps()
   const { blocks, error: blockError } = useBlocksFromTimestamps([t24, t48, tWeek])

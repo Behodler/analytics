@@ -32,4 +32,5 @@ export const ThemedBackgroundGlobal = styled.div`
   height: 100vh;
   mix-blend-mode: color;
   opacity: 0.8;
+  z-index: -1;
 `

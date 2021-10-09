@@ -8,6 +8,7 @@ import { TokenData } from 'state/tokens/reducer'
 import { useEthPrices } from 'hooks/useEthPrices'
 import { formatTokenSymbol, formatTokenName } from 'utils/tokens'
 import { useClients } from 'state/application/hooks'
+import { SCX } from '../../constants/index'
 
 export const TOKENS_BULK = (block: number | undefined, tokens: string[]) => {
   let tokenString = `[`
@@ -18,19 +19,25 @@ export const TOKENS_BULK = (block: number | undefined, tokens: string[]) => {
   const queryString =
     `
     query tokens {
-      tokens(where: {id_in: ${tokenString}},` +
+      tokens(` + // removed: where: {id_in: ${tokenString}},
     (block ? `block: {number: ${block}} ,` : ``) +
-    ` orderBy: totalValueLockedUSD, orderDirection: desc, subgraphError: allow) {
+    // Exclude BAT, WBTC, WEIDAI
+    ` where: { id_not_in: [
+      "0x0d8775f648430679a709e98d2b0cb6250d2887ef",
+      "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+      "0xafef0965576070d1608f374cb14049eefad218ec"
+    ] }` +
+    ` orderBy: liquidity, orderDirection: desc, subgraphError: allow) {
         id
         symbol
         name
-        derivedETH
-        dailyVolumeUSD
         volume
-        txCount
-        totalValueLocked
-        feesUSD
-        totalValueLockedUSD
+        eth
+        ethVolume
+        usd
+        usdVolume
+        liquidity
+        totalSupply
       }
     }
     `
@@ -41,13 +48,13 @@ interface TokenFields {
   id: string
   symbol: string
   name: string
-  derivedETH: string
-  dailyVolumeUSD: string
   volume: string
-  feesUSD: string
-  txCount: string
-  totalValueLocked: string
-  totalValueLockedUSD: string
+  eth: string
+  ethVolume: string
+  usd: string
+  usdVolume: string
+  liquidity: string
+  totalSupply: string
 }
 
 interface TokenDataResponse {
@@ -150,65 +157,81 @@ export function useFetchedTokenDatas(
       }, {})
     : {}
 
+  // TO DO - Calculate SCX liquidity in Subgraph - Temporarily sum SCX total liquidity
+  let totalSCXLiqidity = 0
+  data?.tokens.map((token) => {
+    totalSCXLiqidity = totalSCXLiqidity + parseFloat(token.liquidity) * parseFloat(token.usd)
+  })
+
   // format data and calculate daily changes
   const formatted = tokenAddresses.reduce((accum: { [address: string]: TokenData }, address) => {
+    // const formatted = parsed.reduce((accum: { [address: string]: TokenData }, address) => {
     const current: TokenFields | undefined = parsed[address]
-    const oneDay: TokenFields | undefined = parsed24[address]
-    const twoDay: TokenFields | undefined = parsed48[address]
-    const week: TokenFields | undefined = parsedWeek[address]
+    // const oneDay: TokenFields | undefined = parsed24[address]
+    // const twoDay: TokenFields | undefined = parsed48[address]
+    // const week: TokenFields | undefined = parsedWeek[address]
 
-    const [dailyVolumeUSD, dailyVolumeUSDChange] =
-      current && oneDay && twoDay
-        ? get2DayChange(current.dailyVolumeUSD, oneDay.dailyVolumeUSD, twoDay.dailyVolumeUSD)
-        : current
-        ? [parseFloat(current.dailyVolumeUSD), 0]
-        : [0, 0]
+    const totalSupply = current ? parseFloat(current.totalSupply) : 0
+    const eth = current ? parseFloat(current.eth) : 0
+    const ethVolume = current ? parseFloat(current.ethVolume) : 0
+    const volume = current ? parseFloat(current.volume) : 0
+    const usdVolume = current ? parseFloat(current.usdVolume) : 0
+    // const [usdVolume, usdVolumeChange] =
+    //   current && oneDay && twoDay
+    //     ? get2DayChange(current.usdVolume, oneDay.usdVolume, twoDay.usdVolume)
+    //     : current
+    //     ? [parseFloat(current.usdVolume), 0]
+    //     : [0, 0]
 
-    const dailyVolumeUSDWeek =
-      current && week
-        ? parseFloat(current.dailyVolumeUSD) - parseFloat(week.dailyVolumeUSD)
-        : current
-        ? parseFloat(current.dailyVolumeUSD)
-        : 0
-    const totalLiquidityUSD = current ? parseFloat(current.totalValueLockedUSD) : 0
-    const totalLiquidityUSDChange = getPercentChange(current?.totalValueLockedUSD, oneDay?.totalValueLockedUSD)
-    const tvlToken = current ? parseFloat(current.totalValueLocked) : 0
-    const priceUSD = current ? parseFloat(current.derivedETH) * ethPrices.current : 0
-    const priceUSDOneDay = oneDay ? parseFloat(oneDay.derivedETH) * ethPrices.oneDay : 0
-    const priceUSDWeek = week ? parseFloat(week.derivedETH) * ethPrices.week : 0
-    const priceUSDChange =
-      priceUSD && priceUSDOneDay ? getPercentChange(priceUSD.toString(), priceUSDOneDay.toString()) : 0
-    const priceUSDChangeWeek =
-      priceUSD && priceUSDWeek ? getPercentChange(priceUSD.toString(), priceUSDWeek.toString()) : 0
-    const txCount =
-      current && oneDay
-        ? parseFloat(current.txCount) - parseFloat(oneDay.txCount)
-        : current
-        ? parseFloat(current.txCount)
-        : 0
-    const feesUSD =
-      current && oneDay
-        ? parseFloat(current.feesUSD) - parseFloat(oneDay.feesUSD)
-        : current
-        ? parseFloat(current.feesUSD)
-        : 0
+    // const usdVolumeWeek =
+    //   current && week
+    //     ? parseFloat(current.usdVolume) - parseFloat(week.usdVolume)
+    //     : current
+    //     ? parseFloat(current.usdVolume)
+    //     : 0
+    let totalLiquidityUSD = current ? parseFloat(current.liquidity) * parseFloat(current.usd) : 0
+    // const totalLiquidityUSDChange = getPercentChange(current?.totalValueLockedUSD, oneDay?.totalValueLockedUSD)
+    // const totalLiquidityUSDChange = getPercentChange(current?.totalValueLockedUSD, oneDay?.totalValueLockedUSD)
+    const liquidity = current ? parseFloat(current.liquidity) : 0
+    const priceUSD = current ? parseFloat(current.usd) : 0
+    // const priceUSDOneDay = oneDay ? parseFloat(oneDay.usd) * ethPrices.oneDay : 0
+    // const priceUSDWeek = week ? parseFloat(week.usd) * ethPrices.week : 0
+    // const priceUSDChange =
+    //   priceUSD && priceUSDOneDay ? getPercentChange(priceUSD.toString(), priceUSDOneDay.toString()) : 0
+    // const priceUSDChangeWeek =
+    //   priceUSD && priceUSDWeek ? getPercentChange(priceUSD.toString(), priceUSDWeek.toString()) : 0
+
+    // const txCount =
+    //   current && oneDay
+    //     ? parseFloat(current.txCount) - parseFloat(oneDay.txCount)
+    //     : current
+    //     ? parseFloat(current.txCount)
+    //     : 0
+    // const feesUSD =
+    //   current && oneDay
+    //     ? parseFloat(current.feesUSD) - parseFloat(oneDay.feesUSD)
+    //     : current
+    //     ? parseFloat(current.feesUSD)
+    //     : 0
+
+    // SUM all liquidity for SCX
+    if (address === SCX.address) {
+      totalLiquidityUSD = totalSCXLiqidity
+    }
 
     accum[address] = {
       exists: !!current,
       address,
       name: current ? formatTokenName(address, current.name) : '',
       symbol: current ? formatTokenSymbol(address, current.symbol) : '',
-      dailyVolumeUSD,
-      dailyVolumeUSDChange,
-      dailyVolumeUSDWeek,
-      txCount,
+      totalSupply,
+      volume,
+      eth,
+      ethVolume,
+      usdVolume,
+      liquidity,
       totalLiquidityUSD,
-      feesUSD,
-      totalLiquidityUSDChange,
-      tvlToken,
       priceUSD,
-      priceUSDChange,
-      priceUSDChangeWeek,
     }
 
     return accum

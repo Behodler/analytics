@@ -32,8 +32,7 @@ import { ToggleWrapper, ToggleElementFree } from 'components/Toggle/index'
 import BarChart from 'components/BarChart/alt'
 import CandleChart from 'components/CandleChart'
 import TransactionTable from 'components/TransactionsTable'
-import LiquiditiesTransactionsTable from 'components/TransactionsProtocolTable/liquidities'
-import SwapsTransactionsTable from 'components/TransactionsProtocolTable/swaps'
+import TransactionsProtocolTable from 'components/TransactionsProtocolTable'
 import { useSavedTokens } from 'state/user/hooks'
 import { ONE_HOUR_SECONDS, TimeWindow } from 'constants/intervals'
 import { MonoSpace } from 'components/shared'
@@ -79,32 +78,6 @@ const StyledCMCLogo = styled.img`
   align-items: center;
 `
 
-const TransactionsListType = styled.div`
-  text-align: center;
-  position: relative;
-  margin: 0px auto -16px;
-`
-
-const TransactionsTypeToggle = styled.div`
-  cursor: pointer;
-  text-transform: uppercase;
-  font-size: 14px;
-  display: inline-block;
-  vertical-align: center;
-  font-weight: 600;
-  padding: 8px 20px;
-  position: relative;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-
-  :hover:not(.active) {
-    color: ${({ theme }) => theme.primary1};
-  }
-  &.active {
-    background: ${({ theme }) => theme.primary4};
-  }
-`
-
 enum ChartView {
   TVL,
   VOL,
@@ -113,7 +86,7 @@ enum ChartView {
 
 const DEFAULT_TIME_WINDOW = TimeWindow.WEEK
 
-export default function TokenPage({
+export default function TokenChartPage({
   match: {
     params: { address },
   },
@@ -124,10 +97,6 @@ export default function TokenPage({
   // theming
   const backgroundColor = useColor(address)
   const theme = useTheme()
-
-  // set visible table
-  const [isSwapsChart, setIsSwapTable] = useState<boolean>(false)
-  const setTableType = () => setIsSwapTable(!isSwapsChart)
 
   // scroll on page view
   useEffect(() => {
@@ -272,84 +241,162 @@ export default function TokenPage({
                       </ButtonPrimary>
                     </StyledExternalLink>
                     <StyledExternalLink href={`https://app.behodler.io/#/add/${address}`}>
-                      <ButtonGray width="170px" ml="12px" height={'100%'} style={{ height: '44px' }}>
-                        Add Liquidity
+                      <ButtonGray width="170px" mr="12px" height={'100%'} style={{ height: '44px' }}>
+                        <RowBetween>
+                          <div style={{ display: 'flex', alignItems: 'center' }}>Add Liquidity</div>
+                        </RowBetween>
                       </ButtonGray>
                     </StyledExternalLink>
                   </RowFixed>
                 )}
               </ResponsiveRow>
             </AutoColumn>
-            <CustomRow
-              gap={35}
-              align="stretch"
-              justify="center"
-              directionMobile="column"
-              justifyMobile="center"
-              alignMobile="center"
-            >
-              <CustomColumn grow="grow">
-                <DarkGreyCard>
-                  <CustomColumn align="center">
-                    <TYPE.main fontWeight={400}>Total Liquidity</TYPE.main>
-                    <TYPE.label fontSize="32px">{formatDollarAmount(tokenData.totalLiquidityUSD)}</TYPE.label>
+            <ContentLayout>
+              <DarkGreyCard>
+                <CustomRow gap={35} align="stretch" justify="center">
+                  <CustomColumn>
+                    <TYPE.main fontWeight={400}>Liquidity</TYPE.main>
+                    <TYPE.label fontSize="24px">{formatDollarAmount(tokenData.totalLiquidityUSD)}</TYPE.label>
                     {/* <Percent value={tokenData.totalLiquidityUSDChange} /> */}
                   </CustomColumn>
-                </DarkGreyCard>
-              </CustomColumn>
-              <CustomColumn grow="grow" align="center">
-                <DarkGreyCard>
-                  <CustomColumn align="center">
-                    <TYPE.main fontWeight={400}>Total Volume</TYPE.main>
-                    <TYPE.label fontSize="32px">
-                      {tokenData.volume > 0 ? formatAmount(tokenData.volume) : '-'}
-                    </TYPE.label>
+                  <CustomColumn>
+                    <TYPE.main fontWeight={400}>Volume</TYPE.main>
+                    <TYPE.label fontSize="24px">{formatDollarAmount(tokenData.volume)}</TYPE.label>
+                    {/* <Percent value={tokenData.dailyVolumeUSDChange} /> */}
                   </CustomColumn>
-                </DarkGreyCard>
-              </CustomColumn>
-              <CustomColumn grow="grow" align="center">
-                <DarkGreyCard>
-                  <CustomColumn align="center">
-                    <TYPE.main fontWeight={400}>Total USD Volume</TYPE.main>
-                    <TYPE.label fontSize="32px">
-                      {tokenData.usdVolume > 0 ? formatDollarAmount(tokenData.usdVolume) : '-'}
-                    </TYPE.label>
+                  <CustomColumn>
+                    <TYPE.main fontWeight={400}>USD Volume</TYPE.main>
+                    <TYPE.label fontSize="24px">{formatDollarAmount(tokenData.usdVolume)}</TYPE.label>
                   </CustomColumn>
-                </DarkGreyCard>
-              </CustomColumn>
-              <CustomColumn grow="grow" align="center">
-                <DarkGreyCard>
-                  <CustomColumn align="center">
+                  <CustomColumn>
                     <TYPE.main fontWeight={400}>Total Supply</TYPE.main>
-                    <TYPE.label fontSize="32px">
-                      {tokenData.totalSupply > 0 ? formatAmount(tokenData.totalSupply) : '-'}
-                    </TYPE.label>
+                    <TYPE.label fontSize="24px">{formatAmount(tokenData.totalSupply)}</TYPE.label>
                   </CustomColumn>
-                </DarkGreyCard>
-              </CustomColumn>
-            </CustomRow>
+                </CustomRow>
+              </DarkGreyCard>
+              <DarkGreyCard>
+                {/* <RowBetween align="flex-start">
+                  <AutoColumn>
+                    <RowFixed>
+                      <TYPE.label fontSize="24px" height="30px">
+                        <MonoSpace>
+                          {latestValue
+                            ? formatDollarAmount(latestValue, 2)
+                            : view === ChartView.VOL
+                            ? formatDollarAmount(formattedVolumeData[formattedVolumeData.length - 1]?.value)
+                            : view === ChartView.TVL
+                            ? formatDollarAmount(formattedTvlData[formattedTvlData.length - 1]?.value)
+                            : formatDollarAmount(tokenData.priceUSD, 2)}
+                        </MonoSpace>
+                      </TYPE.label>
+                    </RowFixed>
+                    <TYPE.main height="20px" fontSize="12px">
+                      {valueLabel ? (
+                        <MonoSpace>{valueLabel} (UTC)</MonoSpace>
+                      ) : (
+                        <MonoSpace>{dayjs.utc().format('MMM D, YYYY')}</MonoSpace>
+                      )}
+                    </TYPE.main>
+                  </AutoColumn>
+                  <ToggleWrapper width="180px">
+                    <ToggleElementFree
+                      isActive={view === ChartView.VOL}
+                      fontSize="12px"
+                      onClick={() => (view === ChartView.VOL ? setView(ChartView.TVL) : setView(ChartView.VOL))}
+                    >
+                      Volume
+                    </ToggleElementFree>
+                    <ToggleElementFree
+                      isActive={view === ChartView.TVL}
+                      fontSize="12px"
+                      onClick={() => (view === ChartView.TVL ? setView(ChartView.PRICE) : setView(ChartView.TVL))}
+                    >
+                      Liquidity
+                    </ToggleElementFree>
+                    <ToggleElementFree
+                      isActive={view === ChartView.PRICE}
+                      fontSize="12px"
+                      onClick={() => setView(ChartView.PRICE)}
+                    >
+                      Price
+                    </ToggleElementFree>
+                  </ToggleWrapper>
+                </RowBetween>
+                {view === ChartView.TVL ? (
+                  <LineChart
+                    data={formattedTvlData}
+                    color={backgroundColor}
+                    minHeight={340}
+                    value={latestValue}
+                    label={valueLabel}
+                    setValue={setLatestValue}
+                    setLabel={setValueLabel}
+                  />
+                ) : view === ChartView.VOL ? (
+                  <BarChart
+                    data={formattedVolumeData}
+                    color={backgroundColor}
+                    minHeight={340}
+                    value={latestValue}
+                    label={valueLabel}
+                    setValue={setLatestValue}
+                    setLabel={setValueLabel}
+                  />
+                ) : view === ChartView.PRICE ? (
+                  adjustedToCurrent ? (
+                    <CandleChart
+                      data={adjustedToCurrent}
+                      setValue={setLatestValue}
+                      setLabel={setValueLabel}
+                      color={backgroundColor}
+                    />
+                  ) : (
+                    <LocalLoader fill={false} />
+                  )
+                ) : null} */}
+                {/* <RowBetween width="100%">
+                  <div> </div>
+                  <AutoRow gap="4px" width="fit-content">
+                    <SmallOptionButton
+                      active={timeWindow === TimeWindow.DAY}
+                      onClick={() => setTimeWindow(TimeWindow.DAY)}
+                    >
+                      24H
+                    </SmallOptionButton>
+                    <SmallOptionButton
+                      active={timeWindow === TimeWindow.WEEK}
+                      onClick={() => setTimeWindow(TimeWindow.WEEK)}
+                    >
+                      1W
+                    </SmallOptionButton>
+                    <SmallOptionButton
+                      active={timeWindow === TimeWindow.MONTH}
+                      onClick={() => setTimeWindow(TimeWindow.MONTH)}
+                    >
+                      1M
+                    </SmallOptionButton>
+                    <SmallOptionButton
+                      active={timeWindow === TimeWindow.DAY}
+                      onClick={() => setTimeWindow(TimeWindow.DAY)}
+                    >
+                      All
+                    </SmallOptionButton>
+                  </AutoRow>
+                </RowBetween> */}
+              </DarkGreyCard>
+            </ContentLayout>
+            {/* <TYPE.main>Pools</TYPE.main>
+            <DarkGreyCard>
+              <PoolTable poolDatas={poolDatas} />
+            </DarkGreyCard> */}
             <TYPE.main>Transactions</TYPE.main>
-            {transactions ? (
-              <RowBetween>
-                <TransactionsListType>
-                  <TransactionsTypeToggle className={isSwapsChart ? '' : 'active'} onClick={setTableType}>
-                    Swaps
-                  </TransactionsTypeToggle>
-                  <TransactionsTypeToggle className={isSwapsChart ? 'active' : ''} onClick={setTableType}>
-                    Liquidity
-                  </TransactionsTypeToggle>
-                </TransactionsListType>
-              </RowBetween>
-            ) : (
-              <LocalLoader fill={false} />
-            )}
-            {/* {transactions ? <TransactionsTable transactions={transactions} color={activeNetwork.primaryColor} /> : null} */}
-            {transactions && isSwapsChart ? (
-              <LiquiditiesTransactionsTable transactions={transactions} color={activeNetwork.primaryColor} />
-            ) : null}
-            {transactions && !isSwapsChart ? (
-              <SwapsTransactionsTable transactions={transactions} color={activeNetwork.primaryColor} />
-            ) : null}
+            <DarkGreyCard>
+              {transactions ? (
+                <TransactionsProtocolTable transactions={transactions} color={backgroundColor} />
+              ) : (
+                <LocalLoader fill={false} />
+              )}
+            </DarkGreyCard>
           </AutoColumn>
         )
       ) : (

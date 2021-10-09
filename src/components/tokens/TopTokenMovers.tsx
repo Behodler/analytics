@@ -49,7 +49,7 @@ const DataCard = ({ tokenData }: { tokenData: TokenData }) => {
               <TYPE.label fontSize="14px" mr="6px" lineHeight="16px">
                 {formatDollarAmount(tokenData.priceUSD)}
               </TYPE.label>
-              <Percent fontSize="14px" value={tokenData.priceUSDChange} />
+              {/* <Percent fontSize="14px" value={tokenData.priceUSD} /> */}
             </RowFlat>
           </AutoColumn>
         </RowFixed>
@@ -61,13 +61,13 @@ const DataCard = ({ tokenData }: { tokenData: TokenData }) => {
 export default function TopTokenMovers() {
   const allTokens = useAllTokenData()
 
-  const topPriceIncrease = useMemo(() => {
-    return Object.values(allTokens)
-      .sort(({ data: a }, { data: b }) => {
-        return a && b ? (Math.abs(a?.priceUSDChange) > Math.abs(b?.priceUSDChange) ? -1 : 1) : -1
-      })
-      .slice(0, Math.min(20, Object.values(allTokens).length))
-  }, [allTokens])
+  // const topPriceIncrease = useMemo(() => {
+  //   return Object.values(allTokens)
+  //     .sort(({ data: a }, { data: b }) => {
+  //       return a && b ? (Math.abs(a?.priceUSDChange) > Math.abs(b?.priceUSDChange) ? -1 : 1) : -1
+  //     })
+  //     .slice(0, Math.min(20, Object.values(allTokens).length))
+  // }, [allTokens])
 
   const increaseRef = useRef<HTMLDivElement>(null)
   const [increaseSet, setIncreaseSet] = useState(false)
@@ -95,9 +95,9 @@ export default function TopTokenMovers() {
   return (
     <FixedContainer gap="md">
       <ScrollableRow ref={increaseRef}>
-        {topPriceIncrease.map((entry) =>
+        {/* {topPriceIncrease.map((entry) =>
           entry.data ? <DataCard key={'top-card-token-' + entry.data?.address} tokenData={entry.data} /> : null
-        )}
+        )} */}
       </ScrollableRow>
     </FixedContainer>
   )
