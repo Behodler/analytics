@@ -216,21 +216,30 @@ const Search = ({ ...rest }: React.HTMLAttributes<HTMLDivElement>) => {
 
   // filter on view
   const [showWatchlist, setShowWatchlist] = useState(false)
+  // const tokensForList = useMemo(
+  //   () =>
+  //     showWatchlist
+  //       ? watchListTokenData ?? []
+  //       : tokens.sort((t0, t1) => (t0.dailyVolumeUSD > t1.dailyVolumeUSD ? -1 : 1)),
+  //   [showWatchlist, tokens, watchListTokenData]
+  // )
   const tokensForList = useMemo(
-    () =>
-      showWatchlist
-        ? watchListTokenData ?? []
-        : tokens.sort((t0, t1) => (t0.dailyVolumeUSD > t1.dailyVolumeUSD ? -1 : 1)),
+    () => (showWatchlist ? watchListTokenData ?? [] : tokens.sort((t0, t1) => (t0.volume > t1.volume ? -1 : 1))),
     [showWatchlist, tokens, watchListTokenData]
   )
 
-  const poolForList = useMemo(
-    () =>
-      showWatchlist
-        ? watchListPoolData ?? []
-        : pools.sort((p0, p1) => (p0.dailyVolumeUSD > p1.dailyVolumeUSD ? -1 : 1)),
-    [pools, showWatchlist, watchListPoolData]
-  )
+  // const poolForList = useMemo(
+  //   () =>
+  //     showWatchlist
+  //       ? watchListPoolData ?? []
+  //       : pools.sort((p0, p1) => (p0.dailyVolumeUSD > p1.dailyVolumeUSD ? -1 : 1)),
+  //   [pools, showWatchlist, watchListPoolData]
+  // )
+
+  // const poolForList = useMemo(
+  //   () => (showWatchlist ? watchListPoolData ?? [] : pools.sort((p0, p1) => (p0.volume > p1.volume ? -1 : 1))),
+  //   [pools, showWatchlist, watchListPoolData]
+  // )
 
   return (
     <Hotkeys keyName="command+/" onKeyDown={handleDown}>
@@ -307,7 +316,7 @@ const Search = ({ ...rest }: React.HTMLAttributes<HTMLDivElement>) => {
                         />
                       </RowFixed>
                       <HideSmall>
-                        <TYPE.label textAlign="end">{formatDollarAmount(t.dailyVolumeUSD)}</TYPE.label>
+                        <TYPE.label textAlign="end">{formatDollarAmount(t.usdVolume)}</TYPE.label>
                       </HideSmall>
                       <HideSmall>
                         <TYPE.label textAlign="end">{formatDollarAmount(t.totalLiquidityUSD)}</TYPE.label>
@@ -350,7 +359,7 @@ const Search = ({ ...rest }: React.HTMLAttributes<HTMLDivElement>) => {
                 </TYPE.main>
               </HideSmall>
             </ResponsiveGrid>
-            {poolForList
+            {/* {poolForList
               .filter((p) => !POOL_HIDE.includes(p.address))
               .slice(0, poolsShown)
               .map((p, i) => {
@@ -398,7 +407,7 @@ const Search = ({ ...rest }: React.HTMLAttributes<HTMLDivElement>) => {
               ref={textRef}
             >
               See more...
-            </HoverText>
+            </HoverText> */}
           </AutoColumn>
         </Menu>
       </Container>

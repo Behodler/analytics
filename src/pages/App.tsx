@@ -55,6 +55,12 @@ const BodyWrapper = styled.div<{ warningActive?: boolean }>`
     padding-top: 2rem;
     margin-top: 80px;
   }
+  @media (max-width: 960px) {
+    margin-top: 140px;
+  }
+  @media (max-width: 720px) {
+    margin-top: 80px;
+  }
 `
 
 const Marginer = styled.div`
@@ -92,6 +98,9 @@ export default function App() {
   useEffect(() => {
     setTimeout(() => setLoading(false), 1300)
   }, [])
+
+  // mobile menu state
+  const [open, setOpen] = useState(false)
 
   // update network based on route
   // TEMP - find better way to do this
@@ -135,7 +144,7 @@ export default function App() {
                 </WarningBanner>
               </WarningWrapper>
             )}
-            <Header />
+            <Header open={open} setOpen={setOpen} />
           </HeaderWrapper>
           {subgraphStatus.available === false ? (
             <AppWrapper>

@@ -20,7 +20,43 @@ type ChainTokenList = {
 
 export const WETH_ADDRESS = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
 
-export const SCX = new Token(ChainId.MAINNET, '0x1b8568fbb47708e9e9d31ff303254f748805bf21', 18, 'SCX', 'Scarcity')
+// BEHODLER Tokens & LPs
+export const EYE = {
+  address: '0x155ff1a85f440ee0a382ea949f24ce4e0b751c65',
+  symbol: 'EYE',
+  name: 'Behodler EYE',
+}
+export const SCX = {
+  address: '0x1b8568fbb47708e9e9d31ff303254f748805bf21',
+  symbol: 'SCX',
+  name: 'Scarcity',
+}
+export const WEIDAI = {
+  address: '0xafef0965576070d1608f374cb14049eefad218ec',
+  symbol: 'WEIDAI',
+  name: 'WeiDai',
+}
+export const WETH10 = {
+  address: '0x4f5704d9d2cbccaf11e70b34048d41a0d572993f',
+  symbol: 'WETH',
+  name: 'Wrapped Eth',
+}
+export const EYE_DAI = {
+  address: '0x890ff7533ca0c44f33167fdeeeab1ca7e690634f',
+  symbol: 'EYE/DAI',
+  name: 'EYE/DAI UniV2 LP',
+}
+export const SCX_ETH = {
+  address: '0x319ead06eb01e808c80c7eb9bd77c5d8d163addb',
+  symbol: 'SCX/ETH',
+  name: 'SCX/ETH UniV2 LP',
+}
+export const SCX_EYE = {
+  address: '0xf047ee812b21050186f86106f6cabdfec35366c6',
+  symbol: 'SCX/EYE',
+  name: 'SCX/EYE UniV2 LP',
+}
+
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
 export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')

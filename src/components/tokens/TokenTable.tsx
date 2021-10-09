@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { AutoColumn } from 'components/Column'
 import CurrencyLogo from 'components/CurrencyLogo'
 import { RowFixed } from 'components/Row'
-import { formatDollarAmount } from 'utils/numbers'
+import { formatDollarAmount, formatAmount } from 'utils/numbers'
 import Percent from 'components/Percent'
 import { Label, ClickableText } from '../Text'
 import { PageButtons, Arrow, Break } from 'components/shared'
@@ -69,6 +69,8 @@ const ResponsiveLogo = styled(CurrencyLogo)`
 
 const DataRow = ({ tokenData, index }: { tokenData: TokenData; index: number }) => {
   const theme = useTheme()
+  const abs1 = Math.abs(tokenData.liquidity)
+
   return (
     <LinkWrapper to={'tokens/' + tokenData.address}>
       <ResponsiveGrid>
@@ -93,13 +95,13 @@ const DataRow = ({ tokenData, index }: { tokenData: TokenData; index: number }) 
           {formatDollarAmount(tokenData.priceUSD)}
         </Label>
         <Label end={1} fontWeight={400}>
-          <Percent value={tokenData.priceUSDChange} fontWeight={400} />
+          <HoverInlineText text={`${abs1 > 0 ? formatAmount(abs1) : '-'}  ${tokenData.symbol}`} maxCharacters={16} />
         </Label>
         <Label end={1} fontWeight={400}>
-          {formatDollarAmount(tokenData.dailyVolumeUSD)}
+          {tokenData.totalLiquidityUSD > 0 ? formatDollarAmount(tokenData.totalLiquidityUSD) : '-'}
         </Label>
         <Label end={1} fontWeight={400}>
-          {formatDollarAmount(tokenData.totalLiquidityUSD)}
+          {tokenData.usdVolume > 0 ? formatDollarAmount(tokenData.usdVolume) : '-'}
         </Label>
       </ResponsiveGrid>
     </LinkWrapper>
@@ -108,14 +110,13 @@ const DataRow = ({ tokenData, index }: { tokenData: TokenData; index: number }) 
 
 const SORT_FIELD = {
   name: 'name',
-  dailyVolumeUSD: 'dailyVolumeUSD',
-  totalLiquidityUSD: 'totalLiquidityUSD',
   priceUSD: 'priceUSD',
-  priceUSDChange: 'priceUSDChange',
-  priceUSDChangeWeek: 'priceUSDChangeWeek',
+  liquidity: 'liquidity',
+  totalLiquidityUSD: 'totalLiquidityUSD',
+  usdVolume: 'usdVolume',
 }
 
-const MAX_ITEMS = 10
+const MAX_ITEMS = 15
 
 export default function TokenTable({
   tokenDatas,
@@ -190,19 +191,19 @@ export default function TokenTable({
               Name {arrow(SORT_FIELD.name)}
             </ClickableText>
             <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.priceUSD)}>
-              Price {arrow(SORT_FIELD.priceUSD)}
+              Price USD {arrow(SORT_FIELD.priceUSD)}
             </ClickableText>
-            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.priceUSDChange)}>
-              Price Change {arrow(SORT_FIELD.priceUSDChange)}
+            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.liquidity)}>
+              Liquidity {arrow(SORT_FIELD.liquidity)}
             </ClickableText>
             {/* <ClickableText end={1} onClick={() => handleSort(SORT_FIELD.priceUSDChangeWeek)}>
             7d {arrow(SORT_FIELD.priceUSDChangeWeek)}
           </ClickableText> */}
-            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.dailyVolumeUSD)}>
-              Volume 24H {arrow(SORT_FIELD.dailyVolumeUSD)}
-            </ClickableText>
             <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.totalLiquidityUSD)}>
-              TVL {arrow(SORT_FIELD.totalLiquidityUSD)}
+              Liquidity USD {arrow(SORT_FIELD.totalLiquidityUSD)}
+            </ClickableText>
+            <ClickableText color={theme.text2} end={1} onClick={() => handleSort(SORT_FIELD.usdVolume)}>
+              Total Vol. USD {arrow(SORT_FIELD.usdVolume)}
             </ClickableText>
           </ResponsiveGrid>
 

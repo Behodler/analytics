@@ -151,7 +151,7 @@ const ChartSizeOption = styled.div`
 const TransactionsListType = styled.div`
   text-align: center;
   position: relative;
-  margin: 0 auto -16px;
+  margin: 40px auto -16px;
 `
 
 const TransactionsTypeToggle = styled.div`
@@ -377,12 +377,12 @@ export default function Home() {
             </ChartWrapper>
           )}
         </ResponsiveRow>
-        {/* <RowBetween>
+        <RowBetween>
           <TYPE.main>Top Tokens</TYPE.main>
           <StyledInternalLink to="tokens">Explore</StyledInternalLink>
         </RowBetween>
         <TokenTable tokenDatas={formattedTokens} />
-        <RowBetween>
+        {/* <RowBetween>
           <TYPE.main>Top Pools</TYPE.main>
           <StyledInternalLink to="pools">Explore</StyledInternalLink>
         </RowBetween>
