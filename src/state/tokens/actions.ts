@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit'
 import { TokenData, TokenChartEntry } from './reducer'
-import { PriceChartEntry, Transaction } from 'types'
+import { PriceChartEntry, TransactionToken } from 'types'
 import { SupportedNetwork } from 'constants/networks'
 
 // protocol wide info
@@ -30,7 +30,7 @@ export const updateChartData = createAction<{
 // transactions
 export const updateTransactions = createAction<{
   tokenAddress: string
-  transactions: Transaction[]
+  transactions: TransactionToken
   networkId: SupportedNetwork
 }>('tokens/updateTransactions')
 

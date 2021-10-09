@@ -88,8 +88,6 @@ const SORT_FIELD = {
 }
 
 const DataRow = ({ transaction, color }: { transaction: Transaction; color?: string }) => {
-  console.log('transaction', transaction)
-
   const abs0 = Math.abs(transaction.amountToken0)
   const abs1 = Math.abs(transaction.amountToken1)
   // const outputTokenSymbol = transaction.amountToken0 < 0 ? transaction.token0Symbol : transaction.token1Symbol

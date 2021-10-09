@@ -15,7 +15,7 @@ import { fetchPoolsForToken } from 'data/tokens/poolsForToken'
 import { fetchTokenChartData } from 'data/tokens/chartData'
 import { fetchTokenPriceData } from 'data/tokens/priceData'
 import { fetchTokenTransactions } from 'data/tokens/transactions'
-import { PriceChartEntry, Transaction } from 'types'
+import { PriceChartEntry, TransactionToken } from 'types'
 import { notEmpty } from 'utils'
 import dayjs, { OpUnitType } from 'dayjs'
 import utc from 'dayjs/plugin/utc'
@@ -230,7 +230,7 @@ export function useTokenPriceData(
  * If not loaded, fetch and store
  * @param address
  */
-export function useTokenTransactions(address: string): Transaction[] | undefined {
+export function useTokenTransactions(address: string): TransactionToken | undefined {
   const dispatch = useDispatch<AppDispatch>()
   const [activeNetwork] = useActiveNetworkVersion()
   const token = useSelector((state: AppState) => state.tokens.byAddress[activeNetwork.id]?.[address])

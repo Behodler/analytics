@@ -8,7 +8,7 @@ import {
   updateTransactions,
 } from './actions'
 import { createReducer } from '@reduxjs/toolkit'
-import { PriceChartEntry, Transaction } from 'types'
+import { PriceChartEntry, Transaction, TransactionToken } from 'types'
 import { SupportedNetwork, SUPPORTED_NETWORK_VERSIONS } from 'constants/networks'
 
 export type TokenData = {
@@ -19,24 +19,30 @@ export type TokenData = {
   name: string
   symbol: string
   address: string
+  totalSupply: number
+  eth: number
 
   // volume
-  dailyVolumeUSD: number
-  dailyVolumeUSDChange: number
-  dailyVolumeUSDWeek: number
-  txCount: number
+  volume: number
+  ethVolume: number
+  usdVolume: number
+  // dailyVolumeUSD: number
+  // dailyVolumeUSDChange: number
+  // dailyVolumeUSDWeek: number
+  // txCount: number
 
   //fees
-  feesUSD: number
+  // feesUSD: number
 
   // tvl
-  tvlToken: number
+  liquidity: number
+  // tvlToken: number
   totalLiquidityUSD: number
-  totalLiquidityUSDChange: number
+  // totalLiquidityUSDChange: number
 
   priceUSD: number
-  priceUSDChange: number
-  priceUSDChangeWeek: number
+  // priceUSDChange: number
+  // priceUSDChangeWeek: number
 }
 
 export interface TokenChartEntry {
@@ -57,7 +63,7 @@ export interface TokensState {
           oldestFetchedTimestamp?: number | undefined
           [secondsInterval: number]: PriceChartEntry[] | undefined
         }
-        transactions: Transaction[] | undefined
+        transactions: TransactionToken | undefined
         lastUpdated: number | undefined
       }
     }

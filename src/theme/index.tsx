@@ -30,6 +30,18 @@ const mediaWidthTemplates: { [width in keyof typeof MEDIA_WIDTHS]: typeof css } 
   {}
 ) as any
 
+const mediaMinWidthTemplates: { [width in keyof typeof MEDIA_WIDTHS]: typeof css } = Object.keys(MEDIA_WIDTHS).reduce(
+  (accumulator, size) => {
+    ;(accumulator as any)[size] = (a: any, b: any, c: any) => css`
+      @media (min-width: ${(MEDIA_WIDTHS as any)[size]}px) {
+        ${css(a, b, c)}
+      }
+    `
+    return accumulator
+  },
+  {}
+) as any
+
 const white = '#FFFFFF'
 const black = '#000000'
 
@@ -47,7 +59,7 @@ export function colors(darkMode: boolean): Colors {
     text5: darkMode ? '#2C2F36' : '#EDEEF2',
 
     // backgrounds / greys
-    bg0: darkMode ? 'rgba(25,21,43,0.9)' : '#F7F8FA',
+    bg0: darkMode ? 'rgba(25,21,43,0.4)' : '#F7F8FA',
     bg1: darkMode ? '#120f27' : '#FFFFFF',
     bg2: darkMode ? '#2C2F36' : '#F7F8FA',
     bg3: darkMode ? 'rgba(25,21,43,0.5)' : '#EDEEF2',
@@ -106,6 +118,7 @@ export function theme(darkMode: boolean): DefaultTheme {
 
     // media queries
     mediaWidth: mediaWidthTemplates,
+    mediaMinWidth: mediaMinWidthTemplates,
 
     // css snippets
     flexColumnNoWrap: css`

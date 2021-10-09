@@ -55,6 +55,11 @@ export type TransactionLiquidities = {
   totalLiquidity: number
 }
 
+export type TransactionToken = {
+  swaps: TransactionSwaps[]
+  liquidities: TransactionLiquidities[]
+}
+
 export type TransactionsProtocol = {
   swaps: TransactionSwaps[]
   liquidities: TransactionLiquidities[]
