@@ -28,6 +28,7 @@ import { useAllTokenData } from 'state/tokens/hooks'
 import { MonoSpace } from 'components/shared'
 import { useActiveNetworkVersion } from 'state/application/hooks'
 import dayjs from 'dayjs'
+import { useWindowSize } from '../../hooks/useWindowSize'
 
 const ChartWrapper = styled.div`
   display: block;
@@ -188,6 +189,7 @@ export default function Home() {
   const [protocolData] = useProtocolData()
   const [chartData] = useProtocolChartData()
   const [transactions] = useProtocolTransactions()
+  const { width, height } = useWindowSize()
 
   const [volumeHover, setVolumeHover] = useState<number | undefined>()
   const [liquidityHover, setLiquidityHover] = useState<number | undefined>()
@@ -196,6 +198,7 @@ export default function Home() {
   const [isVolumeChart, setIsVolumeChart] = useState<boolean>(false)
   const [liquidityChartPeriod, setLiquidityChartPeriod] = useState<number>(0)
   const [volumeChartPeriod, setVolumeChartPeriod] = useState<number>(0)
+  const [chartIntervals, setChartIntervals] = useState<number>(7)
 
   // get all the pool datas that exist
   const allPoolData = useAllPoolData()
@@ -211,6 +214,15 @@ export default function Home() {
   // set visible table
   const [isSwapsChart, setIsSwapTable] = useState<boolean>(false)
   const setTableType = () => setIsSwapTable(!isSwapsChart)
+
+  // set chart intervals
+  useEffect(() => {
+    if (width && width < 760) {
+      setChartIntervals(4)
+    } else {
+      setChartIntervals(7)
+    }
+  }, [width])
 
   // if hover value undefined, reset to current day value
   useEffect(() => {
@@ -235,7 +247,9 @@ export default function Home() {
 
   const formattedVolumeData = useMemo(() => {
     if (chartData) {
-      setVolumeHover(chartData[chartData.length - 1].dailyVolumeUSD)
+      if (protocolData) {
+        setVolumeHover(protocolData.totalVolumeUSD)
+      }
       return chartData.slice(volumeChartPeriod).map((day) => {
         return {
           time: unixToDate(day.date),
@@ -245,7 +259,7 @@ export default function Home() {
     } else {
       return []
     }
-  }, [chartData, volumeChartPeriod])
+  }, [chartData, volumeChartPeriod, protocolData])
 
   const allTokens = useAllTokenData()
 
@@ -274,6 +288,7 @@ export default function Home() {
                 data={formattedLiquidityData}
                 height={220}
                 minHeight={332}
+                interval={chartIntervals}
                 color={activeNetwork.primaryColor}
                 value={liquidityHover}
                 label={leftLabel}
@@ -287,7 +302,9 @@ export default function Home() {
                       {leftLabel ? <div>{leftLabel}</div> : <div>{dayjs().format('MMM D, YYYY')}</div>}
                     </ChartKeyDate>
                     <ChartKeyButton>
-                      <a href="#">Add liquidity</a>
+                      <a href="https://app.behodler.io" target="_blank" rel="noreferrer">
+                        Add liquidity
+                      </a>
                     </ChartKeyButton>
                   </ChartKeyWrapper>
                 }
@@ -327,6 +344,7 @@ export default function Home() {
               <BarChart
                 height={220}
                 minHeight={332}
+                interval={chartIntervals}
                 data={formattedVolumeData}
                 color={theme.primary1}
                 setValue={setVolumeHover}
@@ -341,7 +359,9 @@ export default function Home() {
                       {leftLabel ? <div>{leftLabel}</div> : <div>{dayjs().format('MMM D, YYYY')}</div>}
                     </ChartKeyDate>
                     <ChartKeyButton>
-                      <a href="#">Swap tokens</a>
+                      <a href="https://app.behodler.io" target="_blank" rel="noreferrer">
+                        Swap tokens
+                      </a>
                     </ChartKeyButton>
                   </ChartKeyWrapper>
                 }

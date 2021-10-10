@@ -1,8 +1,7 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import gql from 'graphql-tag'
-import { Transaction, TransactionsProtocol, TransactionType } from 'types'
+import { TransactionsProtocol, TransactionType } from 'types'
 import { formatTokenSymbol } from 'utils/tokens'
-import { SCX } from '../../constants'
 
 const GLOBAL_TRANSACTIONS = gql`
   query transactions {

@@ -2,7 +2,6 @@ import React, { Dispatch, SetStateAction, ReactNode } from 'react'
 import { BarChart, ResponsiveContainer, XAxis, Tooltip, Bar } from 'recharts'
 import styled from 'styled-components'
 import Card from 'components/Card'
-import { RowBetween } from 'components/Row'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import { MonoSpace } from 'components/shared'
@@ -35,6 +34,10 @@ const ChartKeyTopLeft = styled.div`
   z-index: 9;
   top: 15px;
   left: 25px;
+  @media (max-width: 1080px) {
+    top: 40px;
+    left: 10px;
+  }
 `
 
 const ChartKeyTopRight = styled.div`
@@ -42,6 +45,10 @@ const ChartKeyTopRight = styled.div`
   z-index: 9;
   top: 15px;
   right: 25px;
+  @media (max-width: 1080px) {
+    top: 12px;
+    right: 10px;
+  }
 `
 
 const ChartKeyBottomLeft = styled.div`
@@ -49,6 +56,10 @@ const ChartKeyBottomLeft = styled.div`
   z-index: 9;
   bottom: 15px;
   left: 25px;
+  @media (max-width: 1080px) {
+    bottom: 12px;
+    left: 10px;
+  }
 `
 
 const ChartKeyBottomRight = styled.div`
@@ -56,6 +67,10 @@ const ChartKeyBottomRight = styled.div`
   z-index: 9;
   bottom: 15px;
   right: 25px;
+  @media (max-width: 1080px) {
+    bottom: 12px;
+    right: 10px;
+  }
 `
 
 const ChartTooltip = styled.div`
@@ -90,13 +105,14 @@ export type LineChartProps = {
   height?: number | undefined
   minHeight?: number
   setValue?: Dispatch<SetStateAction<number | undefined>> // used for value on hover
-  setLabel?: Dispatch<SetStateAction<string | undefined>> // used for label of valye
+  setLabel?: Dispatch<SetStateAction<string | undefined>> // used for label of value
   value?: number
   label?: string
   topLeft?: ReactNode | undefined
   topRight?: ReactNode | undefined
   bottomLeft?: ReactNode | undefined
   bottomRight?: ReactNode | undefined
+  interval?: number | undefined
 } & React.HTMLAttributes<HTMLDivElement>
 
 const CustomBar = ({
@@ -130,14 +146,18 @@ const Chart = ({
   topRight,
   bottomLeft,
   bottomRight,
+  interval,
   minHeight = DEFAULT_HEIGHT,
   ...rest
 }: LineChartProps) => {
   const theme = useTheme()
-  const parsedValue = value
+  // const parsedValue = value
 
   // Interval to display tick labels and tick reference lines
-  const interval = 7
+  let axisInterval = 7
+  if (interval) {
+    axisInterval = interval
+  }
 
   const CustomTooltip = ({ active, payload }: any): any => {
     if (active && payload && payload.length) {
@@ -184,10 +204,10 @@ const Chart = ({
             tickLine={false}
             tickFormatter={(time) => {
               let timeFormat = ''
-              Array(interval - 1)
+              Array(axisInterval - 1)
                 .fill(null)
                 .map((value, index) => {
-                  if (data[Math.round((data.length / interval) * (index + 1))].time === time) {
+                  if (data[Math.round((data.length / axisInterval) * (index + 1))].time === time) {
                     timeFormat = dayjs(time).format('D MMM')
                   }
                   return null

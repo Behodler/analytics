@@ -3,6 +3,7 @@ import { Route, Switch, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 import Header from '../components/Header'
+import { MobileMenu, MenuItems } from '../components/Header/Menu'
 import URLWarning from '../components/Header/URLWarning'
 import Popups from '../components/Popups'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
@@ -101,6 +102,7 @@ export default function App() {
 
   // mobile menu state
   const [open, setOpen] = useState(false)
+  const menuId = 'main-menu'
 
   // update network based on route
   // TEMP - find better way to do this
@@ -145,6 +147,7 @@ export default function App() {
               </WarningWrapper>
             )}
             <Header open={open} setOpen={setOpen} />
+            <MobileMenu items={MenuItems} open={open} setOpen={setOpen} aria-controls={menuId} />
           </HeaderWrapper>
           {subgraphStatus.available === false ? (
             <AppWrapper>

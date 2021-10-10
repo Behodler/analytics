@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
-import { darken } from 'polished'
 import styled from 'styled-components'
 // import LogoDark from '../../assets/svg/logo.svg'
 import BehodlerLogo from '../../assets/svg/behodler-logo.svg'
 import BehodlerLogoTxt from '../../assets/svg/behodler-logo-txt.svg'
-import Menu from '../Menu'
-import Row, { RowFixed, RowBetween, CustomRow } from '../Row'
-import SearchSmall from 'components/Search'
-import NetworkDropdown from 'components/Menu/NetworkDropdown'
-import { useActiveNetworkVersion } from 'state/application/hooks'
-import { networkPrefix } from 'utils/networkPrefix'
-import { AutoColumn, CustomColumn } from 'components/Column'
-import { MainMenu, Mobile, MenuItems } from './menu'
-import { MobileStyled } from './menu/mobile'
+import { CustomRow } from '../Row'
+import { CustomColumn } from 'components/Column'
+import { MainMenu, Mobile, MenuItems } from './Menu'
+import { MobileStyled } from './Menu/Mobile'
 
 const LogoIcon = styled.div`
   width: 180px;

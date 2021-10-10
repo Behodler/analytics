@@ -1,13 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { MenuItem } from './menuItems'
+import { MenuItem } from './MenuItems'
 
 const MobileMenuStyled = styled.div<{ open: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: ${({ theme }) => theme.bg0};
+  background: ${({ theme }) => theme.bg1};
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
   height: 100vh;
   width: 100%;
@@ -38,7 +38,7 @@ const MobileMenuStyled = styled.div<{ open: boolean }>`
     text-align: center;
 
     @media (max-width: 767px) {
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
 
     &:hover {

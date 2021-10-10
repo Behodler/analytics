@@ -1,25 +1,25 @@
-import React, { useMemo, useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { useAllTokenData } from 'state/tokens/hooks'
-import { GreyCard } from 'components/Card'
-import { TokenData } from 'state/tokens/reducer'
+// import { useAllTokenData } from 'state/tokens/hooks'
+// import { GreyCard } from 'components/Card'
+// import { TokenData } from 'state/tokens/reducer'
 import { AutoColumn } from 'components/Column'
-import { RowFixed, RowFlat } from 'components/Row'
-import CurrencyLogo from 'components/CurrencyLogo'
-import { TYPE, StyledInternalLink } from 'theme'
-import { formatDollarAmount } from 'utils/numbers'
-import Percent from 'components/Percent'
-import HoverInlineText from 'components/HoverInlineText'
+// import { RowFixed, RowFlat } from 'components/Row'
+// import CurrencyLogo from 'components/CurrencyLogo'
+// import { TYPE, StyledInternalLink } from 'theme'
+// import { formatDollarAmount } from 'utils/numbers'
+// import Percent from 'components/Percent'
+// import HoverInlineText from 'components/HoverInlineText'
 
-const CardWrapper = styled(StyledInternalLink)`
-  min-width: 190px;
-  margin-right: 16px;
+// const CardWrapper = styled(StyledInternalLink)`
+//   min-width: 190px;
+//   margin-right: 16px;
 
-  :hover {
-    cursor: pointer;
-    opacity: 0.6;
-  }
-`
+//   :hover {
+//     cursor: pointer;
+//     opacity: 0.6;
+//   }
+// `
 
 const FixedContainer = styled(AutoColumn)``
 
@@ -35,31 +35,31 @@ export const ScrollableRow = styled.div`
   }
 `
 
-const DataCard = ({ tokenData }: { tokenData: TokenData }) => {
-  return (
-    <CardWrapper to={'tokens/' + tokenData.address}>
-      <GreyCard padding="16px">
-        <RowFixed>
-          <CurrencyLogo address={tokenData.address} size="32px" />
-          <AutoColumn gap="3px" style={{ marginLeft: '12px' }}>
-            <TYPE.label fontSize="14px">
-              <HoverInlineText text={tokenData.symbol} />
-            </TYPE.label>
-            <RowFlat>
-              <TYPE.label fontSize="14px" mr="6px" lineHeight="16px">
-                {formatDollarAmount(tokenData.priceUSD)}
-              </TYPE.label>
-              {/* <Percent fontSize="14px" value={tokenData.priceUSD} /> */}
-            </RowFlat>
-          </AutoColumn>
-        </RowFixed>
-      </GreyCard>
-    </CardWrapper>
-  )
-}
+// const DataCard = ({ tokenData }: { tokenData: TokenData }) => {
+//   return (
+//     <CardWrapper to={'tokens/' + tokenData.address}>
+//       <GreyCard padding="16px">
+//         <RowFixed>
+//           <CurrencyLogo address={tokenData.address} size="32px" />
+//           <AutoColumn gap="3px" style={{ marginLeft: '12px' }}>
+//             <TYPE.label fontSize="14px">
+//               <HoverInlineText text={tokenData.symbol} />
+//             </TYPE.label>
+//             <RowFlat>
+//               <TYPE.label fontSize="14px" mr="6px" lineHeight="16px">
+//                 {formatDollarAmount(tokenData.priceUSD)}
+//               </TYPE.label>
+//               {/* <Percent fontSize="14px" value={tokenData.priceUSD} /> */}
+//             </RowFlat>
+//           </AutoColumn>
+//         </RowFixed>
+//       </GreyCard>
+//     </CardWrapper>
+//   )
+// }
 
 export default function TopTokenMovers() {
-  const allTokens = useAllTokenData()
+  // const allTokens = useAllTokenData()
 
   // const topPriceIncrease = useMemo(() => {
   //   return Object.values(allTokens)

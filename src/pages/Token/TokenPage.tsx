@@ -1,43 +1,42 @@
-import React, { useMemo, useState, useEffect } from 'react'
+import React, {
+  // useMemo,
+  useState,
+  useEffect,
+} from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import {
   useTokenData,
-  usePoolsForToken,
-  useTokenChartData,
-  useTokenPriceData,
+  // usePoolsForToken,
+  // useTokenChartData,
+  // useTokenPriceData,
   useTokenTransactions,
 } from 'state/tokens/hooks'
 import styled from 'styled-components'
 import { useColor } from 'hooks/useColor'
 import ReactGA from 'react-ga'
 import { ThemedBackground, PageWrapper } from 'pages/styled'
-import { shortenAddress, getEtherscanLink, currentTimestamp } from 'utils'
+import {
+  shortenAddress,
+  getEtherscanLink,
+  // currentTimestamp
+} from 'utils'
 import { AutoColumn, CustomColumn } from 'components/Column'
-import Row, { CustomRow, RowBetween, RowFixed, AutoRow, RowFlat } from 'components/Row'
+import { CustomRow, RowBetween, RowFixed, AutoRow, RowFlat } from 'components/Row'
 import { TYPE, StyledInternalLink } from 'theme'
 import Loader, { LocalLoader } from 'components/Loader'
-import { ExternalLink, Download } from 'react-feather'
+import { ExternalLink } from 'react-feather'
 import { ExternalLink as StyledExternalLink } from '../../theme/components'
 import useTheme from 'hooks/useTheme'
 import CurrencyLogo from 'components/CurrencyLogo'
 import { formatDollarAmount, formatAmount } from 'utils/numbers'
-import Percent from 'components/Percent'
 import { ButtonPrimary, ButtonGray, SavedIcon } from 'components/Button'
 import { DarkGreyCard, LightGreyCard } from 'components/Card'
-import { usePoolDatas } from 'state/pools/hooks'
-import PoolTable from 'components/pools/PoolTable'
-import LineChart from 'components/LineChart/alt'
-import { unixToDate } from 'utils/date'
-import { ToggleWrapper, ToggleElementFree } from 'components/Toggle/index'
-import BarChart from 'components/BarChart/alt'
-import CandleChart from 'components/CandleChart'
-import TransactionTable from 'components/TransactionsTable'
+// import { usePoolDatas } from 'state/pools/hooks'
+// import { unixToDate } from 'utils/date'
 import LiquiditiesTransactionsTable from 'components/TransactionsProtocolTable/liquidities'
 import SwapsTransactionsTable from 'components/TransactionsProtocolTable/swaps'
 import { useSavedTokens } from 'state/user/hooks'
-import { ONE_HOUR_SECONDS, TimeWindow } from 'constants/intervals'
-import { MonoSpace } from 'components/shared'
-import dayjs from 'dayjs'
+// import { ONE_HOUR_SECONDS, TimeWindow } from 'constants/intervals'
 import { useActiveNetworkVersion } from 'state/application/hooks'
 import { networkPrefix } from 'utils/networkPrefix'
 import { EthereumNetworkInfo } from 'constants/networks'
@@ -49,18 +48,6 @@ import CMCLogo from '../../assets/images/cmc.png'
 const PriceText = styled(TYPE.label)`
   font-size: 36px;
   line-height: 0.8;
-`
-
-const ContentLayout = styled.div`
-  margin-top: 16px;
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  grid-gap: 1em;
-
-  @media screen and (max-width: 800px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
 `
 
 const ResponsiveRow = styled(RowBetween)`
@@ -105,13 +92,13 @@ const TransactionsTypeToggle = styled.div`
   }
 `
 
-enum ChartView {
-  TVL,
-  VOL,
-  PRICE,
-}
+// enum ChartView {
+//   TVL,
+//   VOL,
+//   PRICE,
+// }
 
-const DEFAULT_TIME_WINDOW = TimeWindow.WEEK
+// const DEFAULT_TIME_WINDOW = TimeWindow.WEEK
 
 export default function TokenPage({
   match: {
@@ -135,63 +122,63 @@ export default function TokenPage({
   }, [])
 
   const tokenData = useTokenData(address)
-  const poolsForToken = usePoolsForToken(address)
-  const poolDatas = usePoolDatas(poolsForToken ?? [])
+  // const poolsForToken = usePoolsForToken(address)
+  // const poolDatas = usePoolDatas(poolsForToken ?? [])
   const transactions = useTokenTransactions(address)
-  const chartData = useTokenChartData(address)
+  // const chartData = useTokenChartData(address)
 
   // check for link to CMC
   const cmcLink = useCMCLink(address)
 
   // format for chart component
-  const formattedTvlData = useMemo(() => {
-    if (chartData) {
-      return chartData.map((day) => {
-        return {
-          time: unixToDate(day.date),
-          value: day.totalValueLockedUSD,
-        }
-      })
-    } else {
-      return []
-    }
-  }, [chartData])
-  const formattedVolumeData = useMemo(() => {
-    if (chartData) {
-      return chartData.map((day) => {
-        return {
-          time: unixToDate(day.date),
-          value: day.dailyVolumeUSD,
-        }
-      })
-    } else {
-      return []
-    }
-  }, [chartData])
+  // const formattedTvlData = useMemo(() => {
+  //   if (chartData) {
+  //     return chartData.map((day) => {
+  //       return {
+  //         time: unixToDate(day.date),
+  //         value: day.totalValueLockedUSD,
+  //       }
+  //     })
+  //   } else {
+  //     return []
+  //   }
+  // }, [chartData])
+  // const formattedVolumeData = useMemo(() => {
+  //   if (chartData) {
+  //     return chartData.map((day) => {
+  //       return {
+  //         time: unixToDate(day.date),
+  //         value: day.dailyVolumeUSD,
+  //       }
+  //     })
+  //   } else {
+  //     return []
+  //   }
+  // }, [chartData])
 
   // chart labels
-  const [view, setView] = useState(ChartView.PRICE)
-  const [latestValue, setLatestValue] = useState<number | undefined>()
-  const [valueLabel, setValueLabel] = useState<string | undefined>()
-  const [timeWindow] = useState(DEFAULT_TIME_WINDOW)
+  // const [view, setView] = useState(ChartView.PRICE)
+  // const [latestValue, setLatestValue] = useState<number | undefined>()
+  // const [valueLabel, setValueLabel] = useState<string | undefined>()
+  // const [timeWindow] = useState(DEFAULT_TIME_WINDOW)
 
   // pricing data
-  const priceData = useTokenPriceData(address, ONE_HOUR_SECONDS, timeWindow)
-  const adjustedToCurrent = useMemo(() => {
-    if (priceData && tokenData && priceData.length > 0) {
-      const adjusted = Object.assign([], priceData)
-      adjusted.push({
-        time: currentTimestamp() / 1000,
-        open: priceData[priceData.length - 1].close,
-        close: tokenData?.priceUSD,
-        high: tokenData?.priceUSD,
-        low: priceData[priceData.length - 1].close,
-      })
-      return adjusted
-    } else {
-      return undefined
-    }
-  }, [priceData, tokenData])
+  // const priceData = useTokenPriceData(address, ONE_HOUR_SECONDS, timeWindow)
+  // const adjustedToCurrent = useMemo(() => {
+  //   if (priceData && tokenData && priceData.length > 0) {
+  //     const adjusted = Object.assign([], priceData)
+  //     adjusted.push({
+  //       time: currentTimestamp() / 1000,
+  //       open: priceData[priceData.length - 1].close,
+  //       close: tokenData?.priceUSD,
+  //       high: tokenData?.priceUSD,
+  //       low: priceData[priceData.length - 1].close,
+  //     })
+  //     return adjusted
+  //   } else {
+  //     return undefined
+  //   }
+  // }, [priceData, tokenData])
 
   // watchlist
   const [savedTokens, addSavedToken] = useSavedTokens()
@@ -328,7 +315,6 @@ export default function TokenPage({
                 </DarkGreyCard>
               </CustomColumn>
             </CustomRow>
-            <TYPE.main>Transactions</TYPE.main>
             {transactions ? (
               <RowBetween>
                 <TransactionsListType>

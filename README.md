@@ -1,8 +1,8 @@
-## Behodler
+# Behodler
 
 An open sourced interface for Behodler analytics.
 
-Analytics URL: https://analytics.behodler.io/
+Analytics URL: analytics.behodler.io
 
 ## Development
 
@@ -20,5 +20,5 @@ yarn start
 
 ## Contributions
 
-**Please open all pull requests against the `master` branch.**
+**Please open all pull requests against the `main` branch.**
 CI checks will run against all PRs.

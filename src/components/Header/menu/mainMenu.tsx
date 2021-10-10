@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { MenuItem } from './menuItems'
+import { MenuItem } from './MenuItems'
 
 const MainMenuStyled = styled.div`
   ${({ theme }) => theme.mediaWidth.upToSmall`
