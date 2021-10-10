@@ -64,20 +64,20 @@ const ResponsiveGrid = styled.div`
   }
 `
 
-const SortText = styled.button<{ active: boolean }>`
-  cursor: pointer;
-  font-weight: ${({ active }) => (active ? 500 : 400)};
-  margin-right: 0.75rem !important;
-  border: none;
-  background-color: transparent;
-  font-size: 1rem;
-  padding: 0px;
-  color: ${({ active, theme }) => (active ? theme.text1 : theme.text3)};
-  outline: none;
-  @media screen and (max-width: 600px) {
-    font-size: 14px;
-  }
-`
+// const SortText = styled.button<{ active: boolean }>`
+//   cursor: pointer;
+//   font-weight: ${({ active }) => (active ? 500 : 400)};
+//   margin-right: 0.75rem !important;
+//   border: none;
+//   background-color: transparent;
+//   font-size: 1rem;
+//   padding: 0px;
+//   color: ${({ active, theme }) => (active ? theme.text1 : theme.text3)};
+//   outline: none;
+//   @media screen and (max-width: 600px) {
+//     font-size: 14px;
+//   }
+// `
 
 const SORT_FIELD = {
   value: 'value',

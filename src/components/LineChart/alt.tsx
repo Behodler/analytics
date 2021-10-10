@@ -2,13 +2,10 @@ import React, { Dispatch, SetStateAction, ReactNode } from 'react'
 import { ResponsiveContainer, XAxis, YAxis, Tooltip, AreaChart, Area, ReferenceLine } from 'recharts'
 import styled from 'styled-components'
 import Card from 'components/Card'
-import { RowBetween } from 'components/Row'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
-import useTheme from 'hooks/useTheme'
 import { MonoSpace } from 'components/shared'
 import { formatDollarAmount } from 'utils/numbers'
-import { darken } from 'polished'
 dayjs.extend(utc)
 
 const DEFAULT_HEIGHT = 380
@@ -107,7 +104,7 @@ export type LineChartProps = {
   height?: number | undefined
   minHeight?: number
   setValue?: Dispatch<SetStateAction<number | undefined>> // used for value on hover
-  setLabel?: Dispatch<SetStateAction<string | undefined>> // used for label of valye
+  setLabel?: Dispatch<SetStateAction<string | undefined>> // used for label of value
   value?: number
   label?: string
   topLeft?: ReactNode | undefined

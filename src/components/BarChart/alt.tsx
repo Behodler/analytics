@@ -2,7 +2,6 @@ import React, { Dispatch, SetStateAction, ReactNode } from 'react'
 import { BarChart, ResponsiveContainer, XAxis, Tooltip, Bar } from 'recharts'
 import styled from 'styled-components'
 import Card from 'components/Card'
-import { RowBetween } from 'components/Row'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import { MonoSpace } from 'components/shared'
@@ -106,7 +105,7 @@ export type LineChartProps = {
   height?: number | undefined
   minHeight?: number
   setValue?: Dispatch<SetStateAction<number | undefined>> // used for value on hover
-  setLabel?: Dispatch<SetStateAction<string | undefined>> // used for label of valye
+  setLabel?: Dispatch<SetStateAction<string | undefined>> // used for label of value
   value?: number
   label?: string
   topLeft?: ReactNode | undefined
@@ -152,7 +151,7 @@ const Chart = ({
   ...rest
 }: LineChartProps) => {
   const theme = useTheme()
-  const parsedValue = value
+  // const parsedValue = value
 
   // Interval to display tick labels and tick reference lines
   let axisInterval = 7
