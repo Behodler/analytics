@@ -49,7 +49,7 @@ const MobileMenuStyled = styled.div<{ open: boolean }>`
 
 const MobileMenu = ({ items, open, setOpen }: { items: MenuItem[]; open: boolean; setOpen: any }) => {
   const isHidden = open ? true : false
-
+  console.log('open', open)
   return (
     <MobileMenuStyled open={open} aria-label="Mobile menu" aria-hidden={!isHidden}>
       <nav>
