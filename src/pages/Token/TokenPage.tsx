@@ -328,7 +328,6 @@ export default function TokenPage({
                 </DarkGreyCard>
               </CustomColumn>
             </CustomRow>
-            <TYPE.main>Transactions</TYPE.main>
             {transactions ? (
               <RowBetween>
                 <TransactionsListType>

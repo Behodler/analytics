@@ -6,8 +6,8 @@ import BehodlerLogoTxt from '../../assets/svg/behodler-logo-txt.svg'
 import Menu from '../Menu'
 import Row, { CustomRow } from '../Row'
 import { CustomColumn } from 'components/Column'
-import { MainMenu, Mobile, MenuItems } from './menu'
-import { MobileStyled } from './menu/mobile'
+import { MainMenu, Mobile, MenuItems } from './Menu'
+import { MobileStyled } from './Menu/Mobile'
 
 const LogoIcon = styled.div`
   width: 180px;

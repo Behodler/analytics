@@ -48,7 +48,7 @@ const ChartKeyTopRight = styled.div`
   top: 15px;
   right: 25px;
   @media (max-width: 1080px) {
-    top: 40px;
+    top: 12px;
     right: 10px;
   }
 `
@@ -114,6 +114,7 @@ export type LineChartProps = {
   topRight?: ReactNode | undefined
   bottomLeft?: ReactNode | undefined
   bottomRight?: ReactNode | undefined
+  interval?: number | undefined
 } & React.HTMLAttributes<HTMLDivElement>
 
 const Chart = ({
@@ -127,14 +128,18 @@ const Chart = ({
   topRight,
   bottomLeft,
   bottomRight,
+  interval,
   minHeight = DEFAULT_HEIGHT,
   ...rest
 }: LineChartProps) => {
-  const theme = useTheme()
-  const parsedValue = value
+  // const theme = useTheme()
+  // const parsedValue = value
 
   // Interval to display tick labels and tick reference lines
-  const interval = 7
+  let axisInterval = 7
+  if (interval) {
+    axisInterval = interval
+  }
 
   const CustomTooltip = ({ active, payload }: any): any => {
     if (active && payload && payload.length) {
@@ -166,8 +171,8 @@ const Chart = ({
           data={data}
           margin={{
             top: 5,
-            right: 20,
-            left: 20,
+            right: 10,
+            left: 10,
             bottom: 5,
           }}
           onMouseLeave={() => {
@@ -187,12 +192,12 @@ const Chart = ({
             tickLine={false}
             tickFormatter={(time) => {
               let timeFormat = ''
-              Array(interval - 1)
+              Array(axisInterval - 1)
                 .fill(null)
                 .map((value, index) => {
-                  if (data[Math.round((data.length / interval) * (index + 1))].time === time) {
+                  if (data[Math.round((data.length / axisInterval) * (index + 1))].time === time) {
                     // Add fix for last reference line on weekly view
-                    if (data.length === 7 && index === interval - 2) {
+                    if (data.length === 7 && index === axisInterval - 2) {
                       return null
                     }
                     timeFormat = dayjs(time).format('D MMM')
@@ -203,17 +208,17 @@ const Chart = ({
             }}
             interval={0}
           />
-          {Array(interval - 1)
+          {Array(axisInterval - 1)
             .fill(null)
             .map((value, index) => {
               // Add fix for last reference line on weekly view
-              if (data.length === 7 && index === interval - 2) {
+              if (data.length === 7 && index === axisInterval - 2) {
                 return null
               }
               return (
                 <ReferenceLine
                   key={index}
-                  x={data[Math.round((data.length / interval) * (index + 1))].time}
+                  x={data[Math.round((data.length / axisInterval) * (index + 1))].time}
                   stroke="#332670"
                 />
               )

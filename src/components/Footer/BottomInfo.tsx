@@ -26,14 +26,14 @@ const BottomInfo = () => {
     <Wrapper>
       <RowBetween>
         <Polling />
-        {/* <AutoRow gap="6px">
+        <AutoRow gap="6px">
           <RowFixed>
             <Item>ETH Price:</Item>
             <Item fontWeight="700" ml="4px">
               {formatDollarAmount(ethPrices?.current)}
             </Item>
           </RowFixed>
-        </AutoRow> */}
+        </AutoRow>
         <AutoRow gap="6px" style={{ justifyContent: 'flex-end' }}>
           <StyledLink href="https://docs.behodler.io/">Docs</StyledLink>
           <StyledLink href="https://app.behodler.io">App</StyledLink>

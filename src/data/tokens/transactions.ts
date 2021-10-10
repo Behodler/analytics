@@ -5,7 +5,7 @@ import { formatTokenSymbol } from 'utils/tokens'
 
 const GLOBAL_TRANSACTIONS = gql`
   query transactions($address: Bytes!) {
-    swaps0(
+    swaps0: swaps(
       first: 500
       orderBy: timestamp
       where: { inputToken_contains: $address }
@@ -29,7 +29,7 @@ const GLOBAL_TRANSACTIONS = gql`
       }
       outputAmount
     }
-    swaps1(
+    swaps1: swaps(
       first: 500
       orderBy: timestamp
       where: { outputToken_contains: $address }
@@ -183,6 +183,9 @@ export async function fetchTokenTransactions(
       },
       fetchPolicy: 'cache-first',
     })
+    console.log('data', data)
+    console.log('error', error)
+    console.log('loading', loading)
 
     if (error) {
       return {
