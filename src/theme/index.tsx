@@ -52,38 +52,40 @@ export function colors(darkMode: boolean): Colors {
     black,
 
     // text
-    text1: darkMode ? '#FFFFFF' : '#000000',
-    text2: darkMode ? '#C3C5CB' : '#565A69',
-    text3: darkMode ? '#6C7284' : '#888D9B',
-    text4: darkMode ? '#565A69' : '#C3C5CB',
-    text5: darkMode ? '#2C2F36' : '#EDEEF2',
+    // text1: darkMode ? '#FFFFFF' : '#000000', // For switching between light and dark mode
+    text1: '#FFFFFF',
+    text2: '#C3C5CB',
+    text3: '#6C7284',
+    text4: '#565A69',
+    text5: '#2C2F36',
+    text6: darkMode ? '#2C2F36' : '#565A69',
 
     // backgrounds / greys
-    bg0: darkMode ? 'rgba(25,21,43,0.4)' : '#F7F8FA',
-    bg1: darkMode ? '#120f27' : '#FFFFFF',
-    bg2: darkMode ? '#2C2F36' : '#F7F8FA',
-    bg3: darkMode ? 'rgba(25,21,43,0.5)' : '#EDEEF2',
-    bg4: darkMode ? '#565A69' : '#CED0D9',
-    bg5: darkMode ? '#6C7284' : '#888D9B',
+    bg0: 'rgba(25,21,43,0.4)',
+    bg1: '#120f27',
+    bg2: '#2C2F36',
+    bg3: 'rgba(25,21,43,0.5)',
+    bg4: '#565A69',
+    bg5: '#6C7284',
 
     //specialty colors
-    modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
-    advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
+    modalBG: 'rgba(0,0,0,.425)',
+    advancedBG: 'rgba(0,0,0,0.1)',
 
     //primary colors
-    primary1: darkMode ? '#9A76FF' : '#9a76ff',
-    primary2: darkMode ? '#241634' : '#241634',
-    primary3: darkMode ? '#4D8FEA' : '#FF99C9',
-    primary4: darkMode ? 'rgba(154,118,255,0.25)' : 'rgba(154,118,255,0.25)',
-    primary5: darkMode ? '#153d6f70' : '#FDEAF1',
+    primary1: '#9A76FF',
+    primary2: '#241634',
+    primary3: '#4D8FEA',
+    primary4: 'rgba(154,118,255,0.25)',
+    primary5: '#153d6f70',
 
     // color text
-    primaryText1: darkMode ? '#9A76FF' : '#9a76ff',
+    primaryText1: '#9A76FF',
 
     // secondary colors
-    secondary1: darkMode ? '#2172E5' : '#9a76ff',
-    secondary2: darkMode ? '#17000b26' : '#F6DDE8',
-    secondary3: darkMode ? '#17000b26' : '#FDEAF1',
+    secondary1: '#2172E5',
+    secondary2: '#17000b26',
+    secondary3: '#17000b26',
 
     // other
     pink1: '#9a76ff',
@@ -114,7 +116,8 @@ export function theme(darkMode: boolean): DefaultTheme {
     },
 
     //shadows
-    shadow1: darkMode ? '#000' : '#2F80ED',
+    // shadow1: darkMode ? '#000' : '#2F80ED',
+    shadow1: '#000',
 
     // media queries
     mediaWidth: mediaWidthTemplates,
