@@ -105,7 +105,8 @@
     "storybook": "start-storybook -p 6006",
     "test": "react-scripts test --env=jsdom",
     "codegen:schema": "npx apollo client:download-schema --endpoint=https://api.thegraph.com/subgraphs/name/arrenv/behodler",
-    "codegen:generate": "apollo codegen:generate --localSchemaFile=schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/graphql-global-types.ts types"
+    "codegen:generate": "apollo codegen:generate --localSchemaFile=schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/graphql-global-types.ts types",
+    "deploy": "docker-compose up S3"
   },
   "eslintConfig": {
     "extends": "react-app",
@@ -133,6 +134,7 @@
     "@uniswap/default-token-list": "^2.0.0",
     "@uniswap/sdk-core": "^3.0.0-alpha.1",
     "@uniswap/v2-sdk": "^3.0.0-alpha.0",
+    "apollo": "^2.33.6",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
